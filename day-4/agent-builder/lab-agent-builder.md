@@ -1,6 +1,6 @@
 # Lab · HR Asistent v Agent Builderu (hands-on)
 
-> Modul: agent-builder · Odhad: 40 min · Režim: **studenti hands-on** (dle go/no-go); simulace fallback
+> Modul: agent-builder · Odhad: 40 min · Režim: **studenti hands-on** (dle dostupnosti); simulace fallback
 > Scénář a data: [`../copilot-agents/scenario-hr-agent.md`](../copilot-agents/scenario-hr-agent.md) · Návrh: [`../copilot-agents/lab-agent-design.md`](../copilot-agents/lab-agent-design.md)
 
 ## Cíl
@@ -10,7 +10,7 @@ Postavit agenta **HR Asistent** v Agent Builderu nad daty zaměstnanců a na vla
 ## Předpoklady
 
 - Data na HR webu (`/sites/hr-demo`): list `Zaměstnanci` + knihovny `Certifikáty`/`Smlouvy`.
-- Agent Builder dostupný pro studenty (go/no-go instruktora — PAYG tenant).
+- Agent Builder dostupný pro studenty (dostupnost v PAYG tenantu ověřuje lektor).
 - Návrh instrukcí z [`../copilot-agents/lab-agent-design.md`](../copilot-agents/lab-agent-design.md).
 
 ## Kroky

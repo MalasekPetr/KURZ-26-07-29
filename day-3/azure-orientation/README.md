@@ -1,6 +1,6 @@
 # Azure orientace: subscription, RBAC, kde skript běží
 
-> Typ: povinný · Den: 3 · Odhad: 45 min výklad + 30 min instruktorské demo
+> Typ: povinný · Den: 3 · Odhad: 45 min výklad + 30 min živé demo
 
 ## Cíle
 - Orientovat se v základních stavebních kamenech Azure: tenant vs subscription vs
@@ -37,7 +37,7 @@ vlastní resource group, ne na subscription (viz [`../../environment.md`](../../
 | Azure Functions / Automation | pravidelný běh bez vlastního železa | **managed identity** — žádný spravovaný secret |
 | Kontejner (CI/CD, cloud) | přenositelnost, izolace | cert/federated credentials, soubory PEM (D2) |
 
-Pointa pro opatrnou firmu: čím výš na žebříku, tím **méně** tajemství leží na discích —
+Pointa: čím výš na žebříku, tím **méně** tajemství leží na discích —
 managed identity nemá co ukrást. Azure tu není povinnost, ale odměna.
 
 ### Kontejnery — přenositelné prostředí za 5 minut
@@ -47,7 +47,7 @@ Linuxu — tentýž skript z labů běží v něm beze změny. **Devcontainer** 
 v repu) dá celému týmu identické vývojové prostředí ve VS Code — konec „u mě to funguje".
 Kde se to potká s M365: CI/CD pipeline (YAML z D1!) spouští skripty právě v kontejnerech.
 
-## Demo (instruktor)
+## Demo (živě)
 1. Portál: subscription → kurzová resource group → přiřazené role (IAM) — ukázat, že
    GA účet bez role subscription nevidí.
 2. `docker run -it mcr.microsoft.com/powershell` (nebo devcontainer ve VS Code):

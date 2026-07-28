@@ -73,6 +73,16 @@ flowchart TD
 ## Lab
 Viz [`lab-app-registration.md`](lab-app-registration.md).
 
+## Tipy
+- `-ClientId` (identifikátor aplikace) ≠ `-TenantId` (identifikátor tenantu) —
+  nejčastější záměna při prvním připojení; obojí najdete na Overview app registrace.
+- Nepřidávejte `Sites.FullControl.All` „pro jistotu" — začněte s `Sites.Read.All`;
+  širší oprávnění přidáte, až bude reálně potřeba, a se zapsaným zdůvodněním
+  (přesně to pak oceníte při hardening auditu na konci dne).
+- Rozdíl App registration vs Enterprise application vynikne u multi-tenant aplikací:
+  admin consent v cizím tenantu vytvoří jen service principal, šablona zůstává doma.
+- Držte naming konvenci — desítky aplikací pojmenovaných „test" jsou nedohledatelné.
+
 ## Zdroje (Microsoft)
 - [Increase application security with the principle of least privilege](https://learn.microsoft.com/en-us/entra/identity-platform/secure-least-privileged-access)
 - [Security best practices for application properties](https://learn.microsoft.com/en-us/entra/identity-platform/security-best-practices-for-app-registration)

@@ -53,9 +53,20 @@ flowchart TD
   napříč více resourcy s nezávislým životním cyklem.
 
 ## Lab
-Viz [`lab-cert-auth-sites.md`](lab-cert-auth-sites.md) — první velký lab kurzu: certifikát,
+Viz [`lab-cert-auth-sites.md`](lab-cert-auth-sites.md) — nosný lab dne: certifikát,
 bezpečné uložení, app-only přihlášení, skriptované vytvoření pracovních webů a unified
 connect wrapper.
+
+## Tipy
+- Instalaci tří modulů spusťte hned na začátku bloku na pozadí — na pomalejší síti
+  zabere 10–15 minut.
+- Nikdy neexportujte `.pfx` „pro zálohu" — pointa labu je, že privátní klíč nikdy
+  neopustí stroj/store; jediný soubor, který se přenáší, je `.cer` (veřejná část).
+- SPO Management Shell v PowerShell 7 může vyžadovat
+  `Import-Module Microsoft.Online.SharePoint.PowerShell -UseWindowsPowerShell` —
+  rychlá oprava, když import selže.
+- Weby vytvářejte smyčkou přes `dev/test/prod`, ne 3× ručně v UI — parametrizace je
+  návyk, který se v ověření labu kontroluje.
 
 ## Zdroje (Microsoft)
 - [PnP PowerShell — Connect-PnPOnline](https://pnp.github.io/powershell/cmdlets/Connect-PnPOnline.html)

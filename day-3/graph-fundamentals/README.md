@@ -16,8 +16,9 @@
 
 ### Anatomie dotazu — od Exploreru ke skriptu
 Graph Explorer (`https://developer.microsoft.com/graph/graph-explorer`) je sandbox, kde
-se dotaz poskládá bez jediného řádku kódu — návrat k demu z D1
-([`../../day-1/api-landscape/`](../../day-1/api-landscape/)), teď hands-on. Anatomie:
+se dotaz poskládá bez jediného řádku kódu — návrat ke cvičení z D1
+([`../../day-1/api-landscape/exercise-graph-explorer.md`](../../day-1/api-landscape/exercise-graph-explorer.md)),
+teď se složitějšími dotazy a přenosem do skriptu. Anatomie:
 
 ```http
 GET https://graph.microsoft.com/v1.0/users?$select=displayName,mail&$filter=accountEnabled eq true&$top=10
@@ -72,6 +73,17 @@ V tomto kurzu jen orientačně — plná hloubka je v mateřském kurzu GOC223.
 
 ## Lab
 Viz [`lab-graph-ingest.md`](lab-graph-ingest.md).
+
+## Tipy
+- **Tahák SPO API**: [`tips-spo-api.md`](tips-spo-api.md) — jak zjistit ID webu/site/seznamu,
+  definici seznamu a knihovny, **interní názvy polí** a povolené hodnoty choice polí
+  (Graph / PnP / REST vedle sebe). Budete ho potřebovat v Labu 5 i v praxi.
+- `Retry-After` čtěte vždy z odpovědi — pevný `Start-Sleep -Seconds 30` je anti-pattern
+  (a v ověření labu neprojde).
+- OData `$filter` má vlastní syntax (`eq`, jednoduché uvozovky, case-sensitive) —
+  skládejte dotaz v Graph Exploreru, kde chybu vrátí hned; do skriptu přenášejte ověřený.
+- Počet výsledků skriptu vždy porovnejte s Graph Explorerem — skript bez `nextLink`
+  smyčky selže tiše: vrátí méně dat bez jediné chybové hlášky.
 
 ## Zdroje (Microsoft)
 - [Graph Explorer](https://developer.microsoft.com/en-us/graph/graph-explorer)

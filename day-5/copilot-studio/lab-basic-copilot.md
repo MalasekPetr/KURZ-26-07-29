@@ -1,6 +1,6 @@
 # Lab · Postavte základního copilota
 
-> Modul: copilot-studio · Odhad: 50 min · Režim: živý tenant (go/no-go instruktora); simulace fallback
+> Modul: copilot-studio · Odhad: 50 min · Režim: živý tenant (dostupnost ověřuje lektor); simulace fallback
 
 ## Cíl
 

@@ -55,7 +55,7 @@ Data policies v **Power Platform admin centru** (konektory Business/Non-business
 
 ## Naše prostředí
 
-- Studenti staví agenta nad **vlastním webem** (SharePoint knowledge). Přístup do Copilot Studia přes tenant PAYG — go/no-go instruktora; každý testovací dotaz čerpá kredity (evaluační plán ze včerejšího `copilot-agents` labu = 5 testů, ne 50).
+- Studenti staví agenta nad **vlastním webem** (SharePoint knowledge). Přístup do Copilot Studia přes tenant PAYG zajišťuje lektor; každý testovací dotaz čerpá kredity (evaluační plán ze včerejšího `copilot-agents` labu = 5 testů, ne 50).
 
 ## Lab
 

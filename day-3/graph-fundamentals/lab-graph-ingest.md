@@ -46,6 +46,5 @@ naživo — nepovinné, simulovaný log z kroku 4 stačí.
 
 ## Fallback
 
-Pokud tenant nemá dost objektů na reálné stránkování, instruktor předem doplní demo
-data (viz go/no-go v [`instructor-notes.md`](instructor-notes.md)); pro krok 4 je
+Pokud tenant nemá dost objektů na reálné stránkování, doplní lektor demo data; pro krok 4 je
 simulovaný 429 log připraven vždy — reálné vyvolání throttlingu je jen bonus.

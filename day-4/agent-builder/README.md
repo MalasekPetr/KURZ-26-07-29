@@ -15,7 +15,7 @@ Lightweight tvorba deklarativního agenta **přímo v M365 Copilot appce** (web 
 
 ## Kdo / licence / distribuce
 
-- **Koncový uživatel.** Tvorba: M365 Copilot licence **nebo** tenant s PAYG pro Copilot Studio (u nás go/no-go — ověřit).
+- **Koncový uživatel.** Tvorba: M365 Copilot licence **nebo** tenant s PAYG pro Copilot Studio (dostupnost ověřuje lektor).
 - Distribuce: sdílení + **org katalog** (Requests → admin), **ne marketplace**. Pozor: sdílením agenta s embedded soubory sdílíš i jejich obsah.
 
 ## Demo a lab

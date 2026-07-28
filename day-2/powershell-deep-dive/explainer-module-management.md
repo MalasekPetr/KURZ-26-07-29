@@ -47,7 +47,7 @@ přestala fungovat, přestože se "nic nezměnilo".
 - Nové moduly cílí na PS7 (EXO 3.10+ dokonce PS 7.6+); Windows PowerShell 5.1 zůstává
   relevantní jen pro legacy závislosti.
 - SPO Management Shell má v PS7 historicky quirky (`-UseWindowsPowerShell` import fallback
-  na některých verzích — viz tripwires v [`instructor-notes.md`](instructor-notes.md)).
+  na některých verzích — rychlá oprava, pokud `Import-Module` selže).
 - Praktické pravidlo kurzu: **vše v PS7**, PS 5.1 jen když konkrétní modul jinak nejde.
 
 ## Zdroje (Microsoft)

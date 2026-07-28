@@ -1,6 +1,6 @@
 # Lab · Návrh agenta a plán vyhodnocení
 
-> Modul: copilot-agents · Odhad: 40 min · Režim: návrh (papír/MD) + hands-on dle go/no-go (Agent Builder)
+> Modul: copilot-agents · Odhad: 40 min · Režim: návrh (papír/MD) + hands-on dle dostupnosti (Agent Builder)
 
 ## Cíl
 
@@ -19,7 +19,7 @@ Navrhnout agenta pro reálný scénář ze své praxe — instrukce, knowledge, 
 4. Vyber **cestu tvorby** z tabulky v README + 2 argumenty (kdo bude tvořit a udržovat, kam se distribuuje).
 5. **Plán vyhodnocení**: 5 testovacích promptů s očekávanou odpovědí — z toho aspoň 1 negativní test („na tohle NEMÁ odpovídat / nemá vidět data X") a 1 test hranice práv (uživatel bez přístupu ke zdroji). Kritérium úspěchu: kolik z 5 musí projít.
 
-### Část B — hands-on (dle go/no-go)
+### Část B — hands-on (dle dostupnosti)
 
 6. **Agent Builder dostupný:** postav agenta z části A (instrukce + knowledge = vlastní web), spusť 5 testů z plánu, zapiš výsledky.
 

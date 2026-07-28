@@ -71,4 +71,4 @@ Org flow: maker publikuje → **Requests** v admin centru → admin Publish/Reje
 ## Stav produktu / delta
 
 > [!WARNING] Ověřit k datu běhu — stav k 2026-07.
-> Dostupnost Agent Builderu v PAYG tenantu ověřit před během (go/no-go). SharePoint agents podpora listů = GA ~05/2026 (docs lag). Skills = preview; MS uvádí license-only, ale **empiricky fungují i na PAYG** (ověřeno 2026-07-17). **Tvorba SharePoint agenta** ale Copilot licenci **vyžaduje** (potvrzeno).
+> Dostupnost Agent Builderu v PAYG tenantu ověřit před během. SharePoint agents podpora listů = GA ~05/2026 (docs lag). Skills = preview; MS uvádí license-only, ale **empiricky fungují i na PAYG** (ověřeno 2026-07-17). **Tvorba SharePoint agenta** ale Copilot licenci **vyžaduje** (potvrzeno).

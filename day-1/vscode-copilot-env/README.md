@@ -34,11 +34,15 @@ cílový stav pro tým, ne vstupní požadavek.
 ### M365 Copilot Chat (free) zodpovědně
 Kurz používá **M365 Copilot Chat ve free verzi** — je součástí přihlášení firemním účtem
 (`m365.cloud.microsoft/chat`), nic se nedokupuje a běží s **enterprise data protection**:
-prompty a odpovědi zůstávají chráněné v rámci M365 služby, netrénují modely. To je pro
-opatrnou firmu klíčový argument — AI asistent, který licenčně i datově „přijde s tím,
+prompty a odpovědi zůstávají chráněné v rámci M365 služby, netrénují modely. To je
+klíčový argument — AI asistent, který licenčně i datově „přijde s tím,
 co už máte".
 
 Pravidla práce (stejná jako u kteréhokoli AI asistenta):
+- **Priming prompt na začátek každé konverzace** — free verze nemá trvalé custom
+  instructions; pravidla proti fantazii (jen existující cmdlety, přiznaná nejistota,
+  placeholdery místo identifikátorů) se vkládají jako první zpráva — závazný text
+  v [`../formats-fundamentals/copilot-priming-prompt.md`](../formats-fundamentals/copilot-priming-prompt.md).
 - **Akceptační kritéria do promptu** — co má skript dělat, co nesmí (mazat/měnit), jaké
   má mít parametry a chování při chybě. Vágní prompt = vágní skript.
 - **Návrh není hotový kód** — každý vygenerovaný skript se čte řádek po řádku a testuje
@@ -75,6 +79,13 @@ flowchart LR
 
 ## Lab
 Viz [`lab-repo-scaffold.md`](lab-repo-scaffold.md).
+
+## Tipy
+- Neakceptujte první návrh bez přečtení — review si řekněte nahlas, než dáte
+  `git commit`; i vygenerovaný kód mívá nálezy z lintu.
+- Kopírování chat ↔ editor berte jako výhodu: nutí kód při přenosu skutečně přečíst.
+- Zvyklí na ISE? „PowerShell: Enable ISE Mode" je můstek — ale ISE neumí PowerShell 7,
+  kterým kurz jede, takže cíl je plný VS Code workflow.
 
 ## Zdroje (Microsoft)
 - [Integrate with External Tools via Tasks (VS Code)](https://code.visualstudio.com/docs/debugtest/tasks)

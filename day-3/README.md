@@ -13,8 +13,7 @@ dodá vlastní otestovaný skript. Uzavírá automatizační část kurzu.
 | 4 | Mini-capstone: vlastní skript s Copilot Chat *(Lab 5)* | [`capstone-mini`](capstone-mini/) | P |
 
 > [!NOTE]
-> Dopoledne Lab 4 (Graph), odpoledne capstone — bloky 2 a 3 jsou instruktorská dema
-> mezi nimi a zároveň časová rezerva: při skluzu se krátí nejdřív `node-typescript`
-> (na 15 min výkladu), pak demo část `azure-orientation`. Capstone se nekrátí — je to
-> hlavní důkaz hodnoty kurzu a zdroj „first automation" plánů, na které naváže
-> follow-up i D4–5.
+> Dopoledne Lab 4 (Graph), odpoledne capstone — bloky 2 a 3 jsou živá dema mezi nimi
+> a jejich rozsah se přizpůsobuje času. Capstone je vrchol dne: vlastní skript od
+> zadání po otestovaný commit a osobní „first automation" plán, na který naváže
+> praxe i dny 4–5.

@@ -43,7 +43,7 @@ Provozní signály se tu potkávají: PAYG spotřeba (D4–D5) a agent dashboard
 
 ## Naše prostředí
 
-- Studenti (Global Reader + role Audit dle go/no-go) si zkusí audit search nad vlastními Copilot interakcemi z týdne — reálná data z labů D1–D4.
+- Studenti (Global Reader + role Audit dle přidělení lektorem) si zkusí audit search nad vlastními Copilot interakcemi z týdne — reálná data z labů D1–D4.
 
 ## Lab
 

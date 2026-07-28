@@ -148,11 +148,21 @@ Detail a rozhodovací osa: [`backlog/migration-patterns/explainer-migration-tool
 
 ## Formáty (proč je studenti potřebují)
 
+Výuka formátů: [`day-1/formats-fundamentals/`](day-1/formats-fundamentals/).
+
 | Formát | Role v kurzu |
 |---|---|
-| **JSON** | Graph/REST payloady, PnP provisioning šablony, migrační plán (Lab 2), column/view formatting |
-| **YAML** | CI/CD pipeline definice, front-matter, konfigurační soubory |
+| **JSON** | Graph/REST payloady, `tasks.json`, vstupy labů (Lab 1, Lab 5), column/view formatting |
+| **YAML** | CI/CD pipeline definice, front-matter, konfigurační soubory — jen čteme |
+| **XML** | PnP provisioning šablony, CAML dotazy, starší SPO REST (ATOM) — poznat a zorientovat se |
+| **CSV** | tabulární vstupy/výstupy (`Import-Csv`/`Export-Csv`), seznamy účtů, reporty pro Excel |
 | **Markdown** | materiály kurzu, dokumentace, PR popisy, agent instrukce |
+
+**UTF-8** — jediné kódování kurzu: API (Graph/REST) mluví UTF-8 vždy, problémy s českou
+diakritikou vznikají až na hranici se soubory. PowerShell 7 čte i píše UTF-8 jako
+default; ve skriptech přesto psát `-Encoding utf8` explicitně (kvůli Windows
+PowerShell 5.1, kde default UTF-8 není) a **CSV pro Excel exportovat s
+`-Encoding utf8BOM`** — bez BOM český Excel diakritiku rozbije.
 
 ## Vývojářské nástroje
 

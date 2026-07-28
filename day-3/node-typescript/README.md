@@ -1,6 +1,6 @@
 # Node.js & TypeScript — druhá cesta k API
 
-> Typ: povinný · Den: 3 · Odhad: 30 min výklad + 20 min instruktorské demo
+> Typ: povinný · Den: 3 · Odhad: 30 min výklad + 20 min živé demo
 
 ## Cíle
 - Vědět, že PowerShell není jediná cesta: tatáž API (Graph, SharePoint) lze volat
@@ -32,7 +32,7 @@ aplikačního kódu, Azure Functions v TS, CI/CD s node image, výhled na SPFx (
 webpartů — mimo tento běh). Pro účastníky tohoto kurzu je PowerShell správný start;
 tenhle blok je mapa, ne pozvánka k přestupu.
 
-## Demo (instruktor)
+## Demo (živě)
 Připravený TS skript (z explaineru): `npm install`, spuštění s certifikátovou identitou
 z D2, výstup = tentýž seznam webů jako v Labu 4. Ukázat IntelliSense nad Graph typy
 (`@microsoft/microsoft-graph-types`) — „editor zná odpověď dřív než server".

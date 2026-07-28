@@ -38,4 +38,4 @@ a potvrdí, že rozumí pravidlům práce ve sdíleném tenantu.
 - Problémy s MFA (QR kód, SMS, zablokovaný účet): viz "Časté problémy" v
   [`mfa-setup.md`](mfa-setup.md); když nepomůže, řeší instruktor.
 - Pokud studentovi chybí licence/role (nedoběhlé přiřazení), instruktor opraví v admin
-  centru na místě — proto je go/no-go kontrola den předem kritická (viz `instructor-notes.md`).
+  centru na místě — v takovém případě se obraťte na lektora.

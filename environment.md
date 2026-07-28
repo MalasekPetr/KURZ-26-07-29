@@ -83,8 +83,9 @@ přesunuty do `backlog/`) — subscription slouží jen instruktorovi.
 | Položka | Hodnota |
 |---|---|
 | YubiKey | min. 2× YubiKey 5 (PIV) — jeden demo, jeden na kolečko mezi účastníky |
-| Software | YubiKey Manager CLI (`ykman`), YubiKey Smart Card Minidriver |
+| Software | YubiKey Manager CLI (`winget install Yubico.YubiKeyManagerCLI`) + Smart Card Minidriver (`winget install Yubico.YubiKeySmartCardMinidriver`) |
 | Příprava | změněné výchozí PIV PIN/PUK/management key; generálka dema den předem (`day-2/certificates-and-keys/demo-yubikey.md`) |
+| Účastníci | instalace není potřeba; volitelně dle [`day-2/certificates-and-keys/setup-ykman.md`](day-2/certificates-and-keys/setup-ykman.md) (vlastní YubiKey) |
 
 ## Student-facing — vývojářské nástroje
 

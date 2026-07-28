@@ -12,7 +12,7 @@
 Projít permissions přiřazené app registraci během dnešních labů (Lab 2: delegated,
 Lab 3: application `Sites.FullControl.All`) a odebrat vše, co reálně nebylo použito nebo
 má přesnější (užší) alternativu — stejný princip jako v [`../automation-strategy/`](../automation-strategy/),
-teď aplikovaný na skutečnou historii použití, ne na odhad předem. Pro opatrnou firmu je
+teď aplikovaný na skutečnou historii použití, ne na odhad předem. V praxi je
 tohle klíčový rituál: oprávnění se dají kdykoli zpětně zúžit a doložit auditem.
 
 ### Conditional Access pro workload identities (service principals)
@@ -51,6 +51,14 @@ flowchart LR
 
 ## Lab
 Viz [`lab-hardening-app-registration.md`](lab-hardening-app-registration.md).
+
+## Tipy
+- Pořadí rotace je zákon: **nahrát nový → ověřit připojení → teprve pak smazat starý**.
+  Obrácené pořadí = výpadek, přesně tomu se `keyCredentials` overlap vyhýbá.
+- Conditional Access pro service principal se vynucuje jen při **přímém** přiřazení —
+  přiřazení přes skupinu tiše nefunguje (na rozdíl od CA pro uživatele).
+- Zdůvodnění permissions si zapisujte průběžně (od Labu 2) — audit na konci dne je pak
+  čtení poznámek, ne archeologie.
 
 ## Zdroje (Microsoft)
 - [Microsoft Entra Conditional Access for workload identities](https://learn.microsoft.com/en-us/entra/identity/conditional-access/workload-identity)

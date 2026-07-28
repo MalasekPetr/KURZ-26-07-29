@@ -13,15 +13,17 @@ permissions a testovací disciplínou z celého kurzu.
 - App registrace + certifikát z D2 (Laby 2–3), `Connect-CourseTarget` wrapper,
   `Get-AllGraphResults` z Labu 4.
 - Repozitář z D1 s `lint`/`test` tasky; přihlášený M365 Copilot Chat.
+- Tahák [`../graph-fundamentals/tips-spo-api.md`](../graph-fundamentals/tips-spo-api.md)
+  — ID webů a seznamů, interní názvy polí a choices pro váš skript (a do promptu).
 
 ## Kroky
 
 1. **Rozmyslet před promptem** (10 min, na papír): co přesně má skript dělat, jaká data
    čte (který endpoint?), pod jakou identitou poběží (delegated/app-only? proč?),
    jaké permission potřebuje (stačí ta, co mám?), co nesmí udělat.
-2. **Prompt s akceptačními kritérii** do Copilot Chatu — česky, včetně požadavků na
-   `param()`, `try/catch`, stránkování a strukturovaný výstup. Bod 1 je v podstatě
-   hotový prompt.
+2. **Nová konverzace = priming prompt** ([`../../day-1/formats-fundamentals/copilot-priming-prompt.md`](../../day-1/formats-fundamentals/copilot-priming-prompt.md)),
+   pak **prompt s akceptačními kritérii** — česky, včetně požadavků na `param()`,
+   `try/catch`, stránkování a strukturovaný výstup. Bod 1 je v podstatě hotový prompt.
 3. **Číst návrh řádek po řádku**; nejasné řádky nechat vysvětlit; zkontrolovat proti
    checklistu z D1 (hardcoded identifikátory, error handling, `-WhatIf` u zápisu).
 4. **Testovat od bezpečného konce**: nejdřív syntaxe/lint task, pak čtecí část nad
@@ -38,6 +40,8 @@ permissions a testovací disciplínou z celého kurzu.
       instruktorem proti Graph Exploreru).
 - [ ] Účastník umí u libovolného řádku říct, co dělá a proč tam je.
 - [ ] Zapisující úloha proběhla nejdřív s `-WhatIf` a jen nad vlastním `-dev` webem.
+- [ ] Výstupní soubory jsou UTF-8 (CSV pro Excel `utf8BOM`) a česká diakritika
+      z dat SPO přežila až do výstupu.
 - [ ] Commit obsahuje skript, dokumentační blok i použitý prompt.
 
 ## Fallback

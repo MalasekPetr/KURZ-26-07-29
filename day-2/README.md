@@ -15,5 +15,5 @@ udržet čisté (least privilege audit a rotace bez výpadku).
 > [!NOTE]
 > Nejhustší den kurzu — odpovídá na otázku z D1 „a nemůže nám tím někdo smazat tenant?".
 > Lab 3 vytváří pracovní weby `-dev/-test/-prod` a `Connect-CourseTarget` wrapper,
-> které D3 předpokládá — při skluzu má Lab 3 přednost před YubiKey demem (to lze
-> zkrátit na kroky 1–4). Hardening na závěr audituje přesně to, co během dne vzniklo.
+> na kterých staví oba laby D3. Hardening na závěr audituje přesně to, co během dne
+> vzniklo — oprávnění se dají kdykoli zpětně zúžit a doložit auditem.

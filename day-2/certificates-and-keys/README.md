@@ -56,10 +56,12 @@ s přístupem do více tenantů) → hardware klíč; bezobslužná automatizace
 managed identity / Key Vault; běžný scheduled task on-prem → software cert
 v LocalMachine store s NonExportable.
 
-## Demo (instruktor, živě)
+## Demo (živě)
 Viz [`demo-yubikey.md`](demo-yubikey.md) — vygenerování klíče na YubiKey, self-signed
 certifikát, upload `.cer` na app registraci z Labu 3 a `Connect-PnPOnline` s dotykem
-klíče. Účastníci hands-on jen softwarové certy (Lab 3); klíče jsou instruktorské.
+klíče. Hands-on část dne běží nad softwarovými certifikáty z Labu 3; klíč koluje k osahání.
+Kdo má vlastní YubiKey 5, může si postup zopakovat sám — volitelná instalace nástrojů:
+[`setup-ykman.md`](setup-ykman.md).
 
 ## Klíčové rozlišení
 - **Privátní vs veřejný klíč** — privátní se prokazuje a nikam nechodí; veřejný ověřuje
@@ -81,5 +83,4 @@ klíče. Účastníci hands-on jen softwarové certy (Lab 3); klíče jsou instr
 ## Stav produktu / delta
 > [!WARNING]
 > Ověřit k datu běhu — verze YubiKey Manager (`ykman`) a minidriver chování na
-> Windows 11 se mění; demo projet na učebním stroji den před během (viz go/no-go
-> v [`instructor-notes.md`](instructor-notes.md)).
+> Windows 11 se mění; demo si vyžaduje čerstvé ověření verzí.

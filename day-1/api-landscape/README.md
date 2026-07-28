@@ -1,15 +1,18 @@
-# Mapa API M365 & SPO + historie nástrojů
+# Mapa API M365 & SPO — minulost, současnost a budoucnost skriptování
 
-> Typ: povinný · Den: 1 · Odhad: 60 min výklad + 15 min demo & diskuze
+> Typ: povinný · Den: 1 · Odhad: 55 min výklad + 20 min cvičení Graph Explorer
 
 ## Cíle
 - Vysvětlit vlastními slovy, co je API a jak vypadá jedno REST volání (sloveso + URL +
   hlavičky + JSON odpověď) — bez psaní kódu.
 - Orientovat se v mapě API nad Microsoft 365: co pokrývá Microsoft Graph, co SharePoint
   REST/CSOM a proč obojí existuje vedle sebe.
-- Znát historickou linii skriptovacích nástrojů (SOAP → CSOM/JSOM → REST → Graph;
-  MSOnline/AzureAD → SPO Management Shell → PnP → Graph PowerShell) a umět z ní vyvodit
-  pointu: **moduly umírají, REST API zůstává**.
+- Umět zařadit skriptování v čase: **minulost** (SOAP → CSOM/JSOM → REST; MSOnline/AzureAD
+  → SPO Management Shell → PnP), **současnost** (PS7 + PnP/Graph moduly + AI asistent)
+  a **budoucnost** (AI agenti volající tatáž API) — s pointou: **moduly umírají,
+  REST API zůstává**.
+- Zavolat si první vlastní Graph dotaz v Graph Exploreru
+  ([`exercise-graph-explorer.md`](exercise-graph-explorer.md)).
 - Odnést si argumenty, proč se automatizace M365 nebát: data zůstávají ve vašem tenantu,
   přístup řídí permissions model a všechno je auditovatelné.
 
@@ -46,7 +49,7 @@ Shell) **nejsou třetí svět vedle API** — jsou to wrappery nad těmito dvěm
 Otázka nikdy nezní „PowerShell, nebo API?", ale „wrapper, nebo přímé volání?"
 (rozhodovací osu rozebere [`../../day-2/automation-strategy/`](../../day-2/automation-strategy/)).
 
-### Historie nástrojů — proč je dnešní krajina, jaká je
+### Minulost — proč je dnešní krajina, jaká je
 | Éra | Nástroj/API | Stav dnes |
 |---|---|---|
 | 2007– | SOAP web services (`_vti_bin/*.asmx`) | mrtvé, jen v legacy kódu |
@@ -62,6 +65,30 @@ principu pod ním, přepíše skript za odpoledne; kdo zná jen cmdlety nazpamě
 nuly. (2) Staré skripty u zákazníků jsou plné mrtvých vrstev — umět je poznat je
 samostatná dovednost (závazný přehled: [`../../GLOSSARY.md`](../../GLOSSARY.md)).
 
+### Současnost — čím se skriptuje dnes (a čím tento kurz)
+- **PowerShell 7** (multiplatformní) + tři moduly: PnP.PowerShell, Microsoft.Graph SDK,
+  SPO Management Shell — detail v D2 ([`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/)).
+- **Microsoft Graph jako strategická brána** — nové funkce M365 přicházejí nejdřív sem;
+  SDK se generují ze schématu API (PowerShell, TypeScript, C#… — jazyk je volba týmu,
+  viz [`../../day-3/node-typescript/`](../../day-3/node-typescript/)).
+- **AI asistent u psaní** — skript dnes typicky vzniká konverzací (Copilot Chat navrhne,
+  člověk čte a testuje). To je workflow, který se učíme od dnešního odpoledne — včetně
+  mantinelů proti fantazii ([`../formats-fundamentals/copilot-priming-prompt.md`](../formats-fundamentals/copilot-priming-prompt.md)).
+- **Skript jako spravovaný artefakt** — žije v gitu, prochází review, běží pod vlastní
+  identitou s vymezenými právy (D2) — ne jako `.ps1` v e-mailové příloze.
+
+### Budoucnost — kam to směřuje
+- **Z „píšu skript" na „zadávám záměr"**: AI agenti (D4–5 tohoto kurzu) volají tatáž
+  Graph API, jen místo člověka s konzolí je konzumentem agent s nástrojem. Kdo rozumí
+  API a permissions modelu, rozumí i agentům — je to stejná stavebnice.
+- **API-first se prohlubuje**: Microsoft postupně směruje vše na Graph (Kiota-generované
+  SDK, nové admin API); cmdlety a moduly se budou dál měnit, kontrakt API zůstává.
+- **Identita a least privilege rostou na významu**: čím víc automatizace a agentů, tím
+  cennější je disciplína z D2 — každý běžící kód má vlastní, auditovatelnou a odvolatelnou
+  identitu.
+- Prakticky: investice do pochopení REST/Graph a permissions (dny 1–3) je přesně ta
+  část, která přežije další generační výměnu nástrojů.
+
 ### Proč se toho nebát — tři argumenty pro vaši firmu
 1. **Data neopouštějí váš tenant.** API volání jde přímo do vašeho M365 pod identitou,
    kterou jste vydali a můžete kdykoli zneplatnit. Žádná třetí strana, žádná kopie dat.
@@ -71,10 +98,10 @@ samostatná dovednost (závazný přehled: [`../../GLOSSARY.md`](../../GLOSSARY.
 3. **Všechno je auditovatelné.** Každé volání nese identitu aplikace a zapisuje se do
    audit logu — automatizace je *čitelnější* stopa než ruční klikání.
 
-## Demo (instruktor)
-Graph Explorer (`https://developer.microsoft.com/graph/graph-explorer`): přihlášení
-kurzovním účtem, `GET /me`, `GET /me/joinedTeams`, ukázat surový JSON a záložku
-permissions u každého dotazu. Totéž volání pak jednou řádkou PowerShellu — ochutnávka D2.
+## Cvičení — Graph Explorer hands-on
+Viz [`exercise-graph-explorer.md`](exercise-graph-explorer.md) — každý účastník si
+zavolá své první Graph dotazy sám (`/me`, `/me/joinedTeams`, `$select`), bez psaní
+kódu. Instruktor na závěr ukáže totéž volání jednou řádkou PowerShellu — ochutnávka D2.
 
 ## Klíčové rozlišení
 - **API vs modul/wrapper** — modul je pohodlí, API je podstata; modul může zemřít, API má

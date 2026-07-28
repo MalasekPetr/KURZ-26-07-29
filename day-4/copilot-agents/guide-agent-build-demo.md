@@ -13,7 +13,7 @@ Nosná lekce: **nástroj se vybírá podle práce.** V D4–D5 stavíme **dva sc
 | ~~Copilot Studio~~ | **až D5** (analytický payoff nad týmiž daty) | HR Asistent → [`../../day-5/copilot-studio/`](../../day-5/copilot-studio/) |
 
 > [!WARNING] Ověřit k datu běhu — UI se hýbe.
-> Popisky v Agent Builderu a Toolkitu se mění po měsících. Drž se úrovně kroků, ne přesných labelů; před během proklikat. Go/no-go: dostupnost Agent Builderu v PAYG tenantu (viz instructor-notes).
+> Popisky v Agent Builderu a Toolkitu se mění po měsících. Drž se úrovně kroků, ne přesných labelů; před během proklikat.
 
 ## Příprava (5 min)
 
@@ -117,4 +117,4 @@ Analytické dotazy 3 a 4 dnes **schválně necháváme viset** — zítra je Cop
 ## Stav produktu / delta
 
 > [!WARNING] Ověřit k datu běhu — stav k 2026-07.
-> Podpora listů se hýbe nejrychleji (SharePoint agents GA ~05/2026, docs lag; Copilot Studio listy = production-ready preview; manifest schema pro listy v Toolkitu k 2026-07 neexistuje — `list_id` je stále knihovna). Šablony Toolkitu (6.0) se přejmenovávají — ověřit „Declarative Agent" (stavíme bez akce). Před během ověřit go/no-go dostupnost Agent Builderu v PAYG a přesné UI labely.
+> Podpora listů se hýbe nejrychleji (SharePoint agents GA ~05/2026, docs lag; Copilot Studio listy = production-ready preview; manifest schema pro listy v Toolkitu k 2026-07 neexistuje — `list_id` je stále knihovna). Šablony Toolkitu (6.0) se přejmenovávají — ověřit „Declarative Agent" (stavíme bez akce). Před během ověřit dostupnost Agent Builderu v PAYG a přesné UI labely.

@@ -115,4 +115,4 @@ Idempotentní; opětovné naplnění dat přes `-Reseed`. Detail viz hlavička s
 ## Stav produktu / delta
 
 > [!WARNING] Ověřit k datu běhu — stav k 2026-07.
-> Podpora listů se hýbe nejrychleji (SharePoint agents GA ~05/2026, MC1255409; docs lag). Copilot Studio listy = production-ready preview s analytikou. Manifest schema 1.8 (listy pro Toolkit) k 2026-07 neexistuje — Toolkit tedy list `Zaměstnanci` stále nescopuje. Před během ověřit go/no-go dostupnost Agent Builderu a Copilot Studia v PAYG tenantu.
+> Podpora listů se hýbe nejrychleji (SharePoint agents GA ~05/2026, MC1255409; docs lag). Copilot Studio listy = production-ready preview s analytikou. Manifest schema 1.8 (listy pro Toolkit) k 2026-07 neexistuje — Toolkit tedy list `Zaměstnanci` stále nescopuje. Před během ověřit dostupnost Agent Builderu a Copilot Studia v PAYG tenantu.

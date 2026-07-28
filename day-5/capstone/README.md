@@ -48,7 +48,7 @@ Formát: riziko → dopad → pravděpodobnost → mitigace (nástroj z kurzu!) 
 
 ## Lab
 
-Viz [`lab-capstone-blueprint.md`](lab-capstone-blueprint.md) — rollout blueprint. Hodnoticí rubrika: instructor-notes.
+Viz [`lab-capstone-blueprint.md`](lab-capstone-blueprint.md) — rollout blueprint.
 
 ## Zdroje (Microsoft)
 

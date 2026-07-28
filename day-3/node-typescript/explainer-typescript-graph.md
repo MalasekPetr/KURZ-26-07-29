@@ -2,7 +2,7 @@
 
 Deep-dive k [`README.md`](README.md). PowerShell není jediná cesta — automatizaci lze psát
 i jako TypeScript/Node skripty s přímým voláním Microsoft Graph. Pro tento běh je to
-orientační čtení (instruktorské demo, žádný lab): stejná auth matice, jiný jazyk —
+orientační čtení (živé demo, žádný lab): stejná auth matice, jiný jazyk —
 relevantní, až/pokud ve firmě vznikne vývojářský tým.
 
 ## Stavební bloky

@@ -1,17 +1,17 @@
-# KURZ-26-07-29 — M365 API & skriptování pro začátečníky + AI/Copilot (zakázkový kurz, od 29. 7. 2026)
+# KURZ-26-07-29 — M365 API & skriptování od základů + AI/Copilot (zakázkový kurz, od 29. 7. 2026)
 
 Zakázkový 5denní běh sestavený z materiálů kurzů GOPAS **GOC223** (Microsoft 365:
 Pokročilá automatizace a migrace SharePoint) a **GOC224** (Microsoft 365: správa
 SharePoint Copilot a obsahových služeb), doplněný o nové úvodní moduly.
 
-**Zákazník a cíl (revize 2026-07-28):** firma s velkým potenciálem, která se zatím bojí
-M365 využívat naplno. Dny 1–3 proto nejsou migračně-inženýrské, ale evangelizační a
-základové: naučit se používat API SharePointu a M365, nebát se skriptovat, rozlišovat
-mezi nástroji a používat **M365 Copilot Chat (free)** pro přípravu a testování skriptů.
+**Cíl dnů 1–3 (revize 2026-07-28):** sebejistě používat API SharePointu a M365 od
+úplných základů — rozumět tomu, co se pod nástroji děje, skriptovat s jistotou,
+rozlišovat mezi nástroji a používat **M365 Copilot Chat (free)** pro přípravu
+a testování skriptů. Žádné vstupní znalosti se nepředpokládají.
 
 | Část | Dny | Zdroj | Obsah |
 |---|---|---|---|
-| **API & skriptování** | 1–3 | GOC223 (výběr) + nové moduly | mapa API SPO/M365 a historie nástrojů, JSON/YAML/PowerShell od nuly, app registrace a API permissions (delegated vs application), certifikáty (CER/PEM/PFX, stores, YubiKey), Graph prakticky, Azure orientace, kontejnery, Node/TypeScript |
+| **API & skriptování** | 1–3 | GOC223 (výběr) + nové moduly | mapa API SPO/M365 a vývoj nástrojů, formáty dat (JSON/YAML/XML/CSV, UTF-8) a PowerShell od nuly, app registrace a API permissions (delegated vs application), certifikáty (CER/PEM/PFX, stores, YubiKey), Graph prakticky, Azure orientace, kontejnery, Node/TypeScript |
 | **AI & Copilot** | 4–5 | GOC224 | AI landscape, licencování, prompting, tvorba agentů (Agent Builder, SharePoint agents, Agents Toolkit, Copilot Studio), správa Copilotu, rollout |
 
 ## Jak repo číst
@@ -30,13 +30,13 @@ mezi nástroji a používat **M365 Copilot Chat (free)** pro přípravu a testov
 
 ## Co bylo vypuštěno (a proč)
 
-**Revize 2026-07-28** (změna cílovky D1–3 na začátečníky): z původní automatizační části
+**Revize 2026-07-28** (přeorientování dnů 1–3 na základy API a skriptování): z původní automatizační části
 přesunuty do [`backlog/`](backlog/) — kandidáti na navazující běh pro pokročilé:
 
 | Vypuštěno (→ backlog/) | Původně | Důvod |
 |---|---|---|
-| Staging DEV/TEST/PROD (diff/baseline) | D2 | inženýrská hloubka mimo cíl začátečnického běhu |
-| Skladba migrací (SPMT, wave planning) | D2 | migrace nejsou v zadání zákazníka |
+| Staging DEV/TEST/PROD (diff/baseline) | D2 | inženýrská hloubka mimo cíl tohoto běhu |
+| Skladba migrací (SPMT, wave planning) | D2 | migrace nejsou v zadání tohoto běhu |
 | Vzory automatizace zřizování (PnP šablony) | D3 | staví na stagingu; pokročilé téma |
 | Azure integrační vzory (Functions, change notifications) | D3 | nahrazeno orientačním `day-3/azure-orientation` |
 | Lifecycle & compliance enforcement | D3 | governance hloubka mimo fokus |
@@ -69,7 +69,7 @@ KURZ-26-07-29/
 ├─ environment.md       # pracovní tenanty a Azure
 ├─ scripts/             # provozní skripty kurzu — zatím scaffold (plán v scripts/README.md)
 ├─ backlog/             # moduly vyřazené revizí 2026-07-28 (kandidáti na navazující běh)
-├─ day-1/ … day-3/      # API & skriptování pro začátečníky (výběr z GOC223 + nové moduly)
+├─ day-1/ … day-3/      # API & skriptování od základů (výběr z GOC223 + nové moduly)
 ├─ day-4/ … day-5/      # AI & Copilot (moduly z GOC224)
 ```
 
