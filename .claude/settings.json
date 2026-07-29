@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(gh auth *)",
+      "Bash(git -C \"/c/Repos/KÚZK/KURZ-26-07-29\" remote -v)"
+    ]
+  }
+}
