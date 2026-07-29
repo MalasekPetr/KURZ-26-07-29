@@ -72,12 +72,14 @@ Kdo má vlastní YubiKey 5, může si postup zopakovat sám — volitelná insta
 - **NonExportable (software) vs hardware klíč** — pojistka v OS vs fyzikální nemožnost;
   mezistupně nejsou selhání, jsou to úrovně podle hodnoty credentialu.
 - **MFA token vs PIV credential** — tentýž YubiKey umí obojí, ale onboarding D1 ho
-  potkal jako MFA pro člověka; tady drží credential aplikace.
+  potkal jako MFA pro člověka; tady drží credential aplikace. Přihlašování člověka
+  bez hesla řeší **FIDO2/WebAuthn (passkey)** — definice v [`../../GLOSSARY.md`](../../GLOSSARY.md).
 
 ## Zdroje (Microsoft / Yubico)
 - [Certificate credentials for application authentication](https://learn.microsoft.com/en-us/entra/identity-platform/certificate-credentials)
 - [about_Certificate_Provider (PowerShell)](https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.security/about/about_certificate_provider)
 - [Yubico PIV Tool / ykman](https://developers.yubico.com/yubikey-manager/)
+- [Passwordless authentication s FIDO2 / passkeys (Entra)](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-authentication-passwordless)
 - [Azure Key Vault keys overview](https://learn.microsoft.com/en-us/azure/key-vault/keys/about-keys)
 
 ## Stav produktu / delta

@@ -20,7 +20,8 @@ Každý účastník si vybere jednu úlohu (nebo přinese vlastní — vítáno)
    návštěvníci), výstup pro vedoucího, který chce vědět „kdo vidí co".
 3. **Doplnění metadat** — nad pracovním webem `-dev` dávkově založit/aktualizovat
    položky seznamu z JSON vstupu (jediná zapisující úloha — jen nad vlastním webem,
-   s `-WhatIf` režimem).
+   s `-WhatIf` režimem). Vstupní JSON si vygenerujte Copilotem dle
+   [`../../day-1/formats-fundamentals/guide-dummy-data.md`](../../day-1/formats-fundamentals/guide-dummy-data.md).
 
 Všechny úlohy běží pod app registrací z D2 (delegated, případně app-only cert pro
 čtecí varianty) nad pracovními weby z Labu 3.

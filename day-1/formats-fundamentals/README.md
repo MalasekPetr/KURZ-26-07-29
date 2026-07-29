@@ -87,7 +87,9 @@ názvu webu i sloupci. Pravidla, aby přežila celou cestu:
    znovupoužitelný nástroj místo jednorázové vložky.
 5. **Chyby pod kontrolou**: `try { ... } catch { ... }` — skript, který umí říct „tohle
    se nepovedlo a proč", je skript, kterého se nemusíte bát. K tomu `-WhatIf` u všeho,
-   co maže nebo mění.
+   co maže nebo mění. A semínko na D3: ne každá chyba je stejná — některé jsou
+   **přechodné** (za chvíli zmizí samy) a některé **trvalé** (opakování nepomůže);
+   jak je rozlišit a co s tím, přijde u Graph API.
 6. **Most k JSON**: `Get-Content data.json | ConvertFrom-Json` udělá z textu objekty pro
    pipeline; `ConvertTo-Json` opačně.
 

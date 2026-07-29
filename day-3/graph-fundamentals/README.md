@@ -38,11 +38,20 @@ Skript, který nextLink nesleduje, **tiše** zpracuje jen první stránku a tvá
 úspěšně — nejzáludnější kategorie chyby: žádná chybová hláška, jen špatná data.
 Vzor: smyčka `while ($response.'@odata.nextLink')`.
 
-### Chyby: co retryovat a co ne
-Chybový objekt Graphu má strojově čitelné `code` — vázat logiku na něj, ne na text
-`message`. Pravidlo do začátku: **429** → počkat přesně `Retry-After` sekund (závazné,
+### Chyby: transientní vs permanentní
+**Transientní (přechodná) chyba** vznikla dočasným stavem — stejný požadavek za chvíli
+projde beze změny: throttling (429 — server vás dočasně brzdí), 5xx (chvilkový problém
+na straně serveru), síťový výpadek. **Permanentní chyba** je ve vašem požadavku nebo
+oprávněních — opakování nepomůže: 401/403 (chybí permission), 404 (špatné ID/URL),
+400 (vadná syntax). Mnemotechnika: transientní = „zkus to za chvíli, svět se spraví
+sám"; permanentní = „oprav nejdřív sebe". Proč na tom záleží: retry permanentní chyby
+jen maskuje skutečný problém (403 čekáním nezmizí) — a pád na prvním 429 je zbytečná
+křehkost, throttling je v M365 normální provozní stav, ne porucha.
+
+Prakticky: chybový objekt Graphu má strojově čitelné `code` — vázat logiku na něj, ne
+na text `message`. Pravidlo: **429** → počkat přesně `Retry-After` sekund (závazné,
 ne orientační — předčasný retry throttling prodlužuje) a zkusit znovu; **5xx** → retry
-s rostoucím čekáním; **ostatní 4xx** (403, 404) → neretryovat, to je chyba k vyřešení,
+s rostoucím čekáním; **ostatní 4xx** → neretryovat (fail-fast), to je chyba k vyřešení,
 ne k opakování. Graph SDK mají retry vestavěný — vlastní smyčku psát jen tam, kde SDK
 nepomáhá.
 
@@ -67,8 +76,8 @@ V tomto kurzu jen orientačně — plná hloubka je v mateřském kurzu GOC223.
 - **`$filter` na serveru vs filtrování v pipeline doma** — server vrátí méně dat rychleji;
   `Where-Object` až jako poslední možnost.
 - **Jedna stránka vs kompletní dataset** — bez průchodu `@odata.nextLink` skript lže.
-- **Retry (429/5xx) vs fail-fast (jiné 4xx)** — opakovat má smysl jen u chyb, které
-  odezní samy.
+- **Transientní (429/5xx → retry) vs permanentní (jiné 4xx → fail-fast)** — opakovat
+  má smysl jen u chyb, které odezní samy; permanentní chybu retry jen maskuje.
 - **`code` (stabilní) vs `message` (může se změnit)** v chybovém objektu.
 
 ## Lab

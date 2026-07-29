@@ -4,7 +4,9 @@
 
 ## Cíle
 - Ovládat VS Code jako pracovní prostředí pro automatizační skripty (workspace, `tasks.json`, formátování, ladění).
-- Dodržovat základní hygienu repozitáře — malé commity s popisnou zprávou a review před mergem.
+- Dodržovat základní hygienu repozitáře — malé commity s popisnou zprávou, pull před
+  push, review před mergem — a umět doporučit, kde má repozitář organizace bydlet
+  (GitHub vs Azure DevOps vs self-hosted, viz [`explainer-git-hosting.md`](explainer-git-hosting.md)).
 - Používat **M365 Copilot Chat (free)** zodpovědně jako asistenta pro přípravu a testování skriptů — s explicitním promptingem, bezpečnostními mantinely a akceptačními kritérii, ne slepým přijímáním návrhů.
 - Rozumět třem runtime prostředím automatizace (DEV stanice, kontejner/CI, server) — viz
   [`explainer-runtime-environments.md`](explainer-runtime-environments.md).
@@ -25,11 +27,15 @@ výběru F8 a integrovanou PowerShell konzoli. Pro adminy zvyklé na ISE existuj
 (Command Palette → "PowerShell: Enable ISE Mode").
 
 ### Git základy a hygiena repozitáře
-Malé commity s popisnou zprávou (proč, ne jen co), review před merge do `main`, checklist
-zaměřený na automatizační kód: hardcoded identifikátory (tenant ID, ClientId, secrety),
-chybějící error handling, chybějící `-WhatIf` u destruktivních skriptů. Pro tento kurz
-stačí lineární práce v `main` s malými commity — branch/PR disciplína je zmíněna jako
-cílový stav pro tým, ne vstupní požadavek.
+Skripty jsou kód a kód patří do Gitu — bez ohledu na to, kde repozitář bydlí. Malé
+commity s popisnou zprávou (proč, ne jen co), **pull před push**, review před merge do
+`main`, checklist zaměřený na automatizační kód: hardcoded identifikátory (tenant ID,
+ClientId, secrety), chybějící error handling, chybějící `-WhatIf` u destruktivních
+skriptů. Pro tento kurz stačí lineární práce v `main` s malými commity — branch/PR
+disciplína je cílový stav pro tým, ne vstupní požadavek. Slovníček (commit, push/pull,
+branch, pull request, merge, `.gitignore`), srovnání hostingů **GitHub vs Azure DevOps
+vs self-hosted** a doporučení pro organizace veřejné správy:
+[`explainer-git-hosting.md`](explainer-git-hosting.md).
 
 ### M365 Copilot Chat (free) zodpovědně
 Kurz používá **M365 Copilot Chat ve free verzi** — je součástí přihlášení firemním účtem

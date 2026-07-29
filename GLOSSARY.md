@@ -88,6 +88,14 @@ na úrovni celého tenantu — každé navíc je rozšíření útočné plochy.
 tam, kde to dává smysl, a u app-only vždy sepsat přesný seznam permissions
 s odůvodněním (viz [`day-2/security-hardening/`](day-2/security-hardening/)).
 
+**FIDO2 / WebAuthn (passkey)** — standard pro passwordless, phishing-resistant
+přihlášení **člověka**: privátní klíč v hardwaru (YubiKey, TPM, telefon) podepisuje
+výzvu služby, heslo neexistuje a podpis je vázaný na doménu (falešná přihlašovací
+stránka ho nedostane). Nezaměňovat s **PIV** — tentýž YubiKey umí obojí, ale FIDO2
+drží identitu člověka, PIV certifikát u nás credential aplikace
+(viz [`day-2/certificates-and-keys/`](day-2/certificates-and-keys/)). Stejná pointa
+obou: privátní klíč, který fyzicky nejde zkopírovat.
+
 ## Microsoft Graph — inženýrské pojmy
 
 | Pojem | Co to je |
@@ -169,8 +177,8 @@ PowerShell 5.1, kde default UTF-8 není) a **CSV pro Excel exportovat s
 | Nástroj | Role v kurzu |
 |---|---|
 | **VS Code** | primární editor — workspace, tasks.json, launch.json (ladění PowerShell/Node), formátování |
-| **GitHub Copilot** | AI asistent při psaní automatizačního kódu — vlastní licence (mimo M365), probírá se s důrazem na prompting a bezpečnostní mantinely (žádné tajné klíče/tenant ID v promptu) |
-| **Git** | hygiena repozitáře, branch strategie, PR/code review workflow pro infrastructure-as-code přístup kurzu |
+| **M365 Copilot Chat (free)** | AI asistent kurzu pro přípravu a testování skriptů — součást firemního účtu, enterprise data protection; vždy s priming promptem ([`day-1/formats-fundamentals/copilot-priming-prompt.md`](day-1/formats-fundamentals/copilot-priming-prompt.md)) a bez tajných klíčů/tenant ID v promptu. (GitHub Copilot = placená editor-integrace, v kurzu jen zmínka.) |
+| **Git** | verzování skriptů — malé commity, pull před push, PR/code review; hosting (GitHub vs Azure DevOps vs self-hosted) a doporučení pro veřejnou správu: [`day-1/vscode-copilot-env/explainer-git-hosting.md`](day-1/vscode-copilot-env/explainer-git-hosting.md) |
 
 ---
 

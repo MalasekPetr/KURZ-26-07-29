@@ -54,5 +54,7 @@ Detailní návod na app registraci a přiřazení permissions je součástí `da
 ## Demo data
 
 `seed-data/*` (vzniká s fází 3) — **výhradně fiktivní data** pro laby. Nikdy sem
-nenahrávejte reálná zákaznická/personální data. Migrační seed data původního běhu se
-přesunula do `backlog/migration-patterns` spolu s migračním modulem.
+nenahrávejte reálná zákaznická/personální data; fiktivní obsah lze generovat Copilotem
+dle [`../day-1/formats-fundamentals/guide-dummy-data.md`](../day-1/formats-fundamentals/guide-dummy-data.md).
+Migrační seed data původního běhu se přesunula do `backlog/migration-patterns` spolu
+s migračním modulem.
