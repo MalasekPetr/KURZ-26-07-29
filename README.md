@@ -73,6 +73,11 @@ KURZ-26-07-29/
 ├─ day-4/ … day-5/      # AI & Copilot (moduly z GOC224)
 ```
 
+## Licence
+
+Všechna práva vyhrazena (Malach IS s.r.o.) s výjimkou pro účastníky kurzu — osobní
+studium a užití skriptů ve vlastní organizaci. Detail: [`LICENSE.md`](LICENSE.md).
+
 ## Provenience
 
 Převzaté moduly jsou kopie z GOC223/GOC224 k 2026-07-18; moduly `day-1/api-landscape`,
