@@ -50,10 +50,24 @@ Kde se to potká s M365: CI/CD pipeline (YAML z D1!) spouští skripty právě v
 ## Demo (živě)
 1. Portál: subscription → kurzová resource group → přiřazené role (IAM) — ukázat, že
    GA účet bez role subscription nevidí.
-2. `docker run -it mcr.microsoft.com/powershell` (nebo devcontainer ve VS Code):
-   spustit skript z Labu 1 uvnitř kontejneru — stejný výstup, jiný svět. Ukázat, že
-   `Cert:\` drive v Linux kontejneru neexistuje → vazba na PEM z D2.
-3. Azure Function s managed identity (předpřipravená): tělo skriptu bez jediného
+2. **Kontejner bez instalace čehokoli — Azure Cloud Shell** (`shell.azure.com`) je sám
+   kontejner s PowerShellem 7 na Linuxu:
+
+   ```powershell
+   $PSVersionTable            # PowerShell 7 … na Linuxu
+   cat /etc/os-release        # jsme v Linux kontejneru, ne na svém Windows
+   Get-ChildItem Cert:\       # SELŽE — Cert: provider na Linuxu neexistuje → proto PEM (D2)
+   Install-Module PnP.PowerShell -Scope CurrentUser -Force
+   ```
+
+   Pointa: session je **efemérní** — zavřením zmizí, přežije jen `$HOME` (file share).
+   Kontejner = zabalené běhové prostředí, ne váš počítač.
+3. **Devcontainer** — [`.devcontainer/devcontainer.json`](../../.devcontainer/devcontainer.json)
+   tohoto repa: otevřít repo v **GitHub Codespaces** (*Code → Codespaces → Create*) a
+   ukázat, že celý tým dostane identické prostředí (PowerShell 7 + PnP + extensions)
+   definované jedním JSON souborem v gitu — „u mě to funguje" končí. Lokálně totéž dělá
+   *Dev Containers: Reopen in Container* ve VS Code (vyžaduje Docker/Podman).
+4. Azure Function s managed identity (předpřipravená): tělo skriptu bez jediného
    credentialu — kam se firma může dostat, až workflow zapustí kořeny.
 
 ## Klíčové rozlišení
@@ -72,8 +86,20 @@ Kde se to potká s M365: CI/CD pipeline (YAML z D1!) spouští skripty právě v
 - [Managed identities for Azure resources](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview)
 - [Developing inside a Container (VS Code)](https://code.visualstudio.com/docs/devcontainers/containers)
 
+## Tipy
+- **Kontejner si osaháte bez instalace**: Cloud Shell (`shell.azure.com`) i Codespaces
+  běží v prohlížeči. Lokální runtime (Docker Desktop / Podman) potřebujete až tehdy,
+  když chcete kontejnery provozovat, ne poznat.
+- Na Windows vyžadují Docker Desktop i Podman **WSL2** — instalace znamená restart
+  stroje; nepouštějte se do ní pět minut před tím, než to potřebujete.
+- **Licenční pozor u Docker Desktop**: pro větší organizace je placený. Podman je
+  bez tohoto omezení a příkazy jsou stejné (`podman run …` místo `docker run …`).
+- Kdo chce kontejnery vyzkoušet doma: `wsl --install` (restart) →
+  `winget install RedHat.Podman` → `podman machine init && podman machine start` →
+  `podman run -it mcr.microsoft.com/powershell`.
+
 ## Stav produktu / delta
 > [!WARNING]
-> Ověřit k datu běhu — dostupnost Docker Desktop / Podman na učebních strojích pro
-> demo 2 (licencování Docker Desktop ve firmách se mění); fallback je devcontainer
-> v GitHub Codespaces nebo jen promítnuté demo.
+> Ověřit k datu běhu — vzhled a chování Azure Cloud Shell, dostupnost Codespaces
+> (free tier hodin) a licenční podmínky Docker Desktopu se mění. Demo 2 a 3 projít
+> den předem; obojí vyžaduje jen prohlížeč a přihlášení.

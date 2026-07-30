@@ -1,0 +1,21 @@
+{
+  "name": "KURZ-26-07-29 — PowerShell 7 + PnP",
+  "image": "mcr.microsoft.com/devcontainers/base:ubuntu-22.04",
+  "features": {
+    "ghcr.io/devcontainers/features/powershell:1": {}
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.powershell",
+        "davidanson.vscode-markdownlint"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "pwsh",
+        "files.encoding": "utf8"
+      }
+    }
+  },
+  "postCreateCommand": "pwsh -NoProfile -c \"Install-Module PnP.PowerShell -Scope CurrentUser -Force -AllowClobber; Install-Module Microsoft.Graph.Sites -Scope CurrentUser -Force\"",
+  "remoteUser": "vscode"
+}
