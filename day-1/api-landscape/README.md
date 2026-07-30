@@ -82,7 +82,7 @@ samostatná dovednost (závazný přehled: [`../../GLOSSARY.md`](../../GLOSSARY.
   SPO Management Shell — detail v D2 ([`../../day-2/powershell-deep-dive/`](../../day-2/powershell-deep-dive/)).
 - **Microsoft Graph jako strategická brána** — nové funkce M365 přicházejí nejdřív sem;
   SDK se generují ze schématu API (PowerShell, TypeScript, C#… — jazyk je volba týmu,
-  viz [`../../day-3/node-typescript/`](../../day-3/node-typescript/)).
+  viz [`../../day-3/opt-node-typescript/`](../../day-3/opt-node-typescript/)).
 - **AI asistent u psaní** — skript dnes typicky vzniká konverzací (Copilot Chat navrhne,
   člověk čte a testuje). To je workflow, který se učíme od dnešního odpoledne — včetně
   mantinelů proti fantazii ([`../formats-fundamentals/copilot-priming-prompt.md`](../formats-fundamentals/copilot-priming-prompt.md)).
@@ -102,7 +102,7 @@ identita), který se učíme ve dnech 1–3:
   webparty a rozšíření stránek v TypeScriptu, nasazované přes App Catalog, s consentem
   řízeným přes Entra. Přímý nástupce Add-inů i JS injection — co dřív dělal Script
   Editor „na divoko", dělá dnes SPFx řízeně a auditovatelně. V tomto běhu jen mapa
-  (jazykový základ ukazuje [`../../day-3/node-typescript/`](../../day-3/node-typescript/));
+  (jazykový základ ukazuje [`../../day-3/opt-node-typescript/`](../../day-3/opt-node-typescript/));
   hloubka je téma plného kurzu GOC223.
 - **API-first / Graph** — Microsoft postupně směruje vše na Graph (Kiota-generované
   SDK, nová admin API); cmdlety a moduly se budou dál měnit, kontrakt API zůstává.

@@ -1,6 +1,6 @@
 # Node.js & TypeScript — druhá cesta k API
 
-> Typ: povinný · Den: 3 · Odhad: 30 min výklad + 20 min živé demo
+> Typ: **volitelný** · Den: 3 · Odhad: 20 min (výklad + krátké demo)
 
 ## Cíle
 - Vědět, že PowerShell není jediná cesta: tatáž API (Graph, SharePoint) lze volat

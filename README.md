@@ -11,7 +11,7 @@ a testování skriptů. Žádné vstupní znalosti se nepředpokládají.
 
 | Část | Dny | Zdroj | Obsah |
 |---|---|---|---|
-| **API & skriptování** | 1–3 | GOC223 (výběr) + nové moduly | mapa API SPO/M365 a vývoj nástrojů, formáty dat (JSON/YAML/XML/CSV, UTF-8) a PowerShell od nuly, app registrace a API permissions (delegated vs application), certifikáty (CER/PEM/PFX, stores, YubiKey), Graph prakticky, Azure orientace, kontejnery, Node/TypeScript |
+| **API & skriptování** | 1–3 | GOC223 (výběr) + nové moduly | mapa API SPO/M365 a vývoj nástrojů, formáty dat (JSON/YAML/XML/CSV, UTF-8) a PowerShell od nuly, app registrace a API permissions (delegated vs application), certifikáty (CER/PEM/PFX, stores, YubiKey), Graph prakticky a živá dema nad daty, site & list templates, správa SPFx (App Catalog, API access), Azure orientace, kontejnery, Node/TypeScript |
 | **AI & Copilot** | 4–5 | GOC224 | AI landscape, licencování, prompting, tvorba agentů (Agent Builder, SharePoint agents, Agents Toolkit, Copilot Studio), správa Copilotu, rollout |
 
 ## Jak repo číst
@@ -48,9 +48,9 @@ vypustil — zůstává v mateřských repech:
 | Vypuštěno | Zdroj | Důvod |
 |---|---|---|
 | Architektonický přehled (opt) | GOC223 D1 | volitelný; klíčové pojmy pokryje `automation-strategy` a glosář |
-| Orchestry (obě varianty) | GOC223 D3 / GOC224 D5 | 3rd-party simulace bez licence, volitelné leaf nody |
+| Orchestry (plné bloky) | GOC223 D3 / GOC224 D5 | ~~3rd-party bez licence~~ **revize 2026-07-30: obnoveno jako volitelný úvod `day-3/opt-orchestry-intro`** (bez hands-on) |
 | Microsoft Clarity | GOC223 D4 | okrajové pro cílovou skupinu |
-| SPFx základy & App Catalog | GOC223 D5 | vývojářské téma; zmínka v `day-3/node-typescript` |
+| SPFx vývoj (základy, tvorba webpartů) | GOC223 D5 | vývojářské téma; **správa** SPFx ale pokrývá nový `day-3/spfx-admin` (revize 2026-07-30) |
 | Formáty, SharePoint úvod, IA | GOC224 D1 | ~~audience nepotřebuje úvod~~ **revize 2026-07-28: úvod do formátů obnoven jako nový modul `day-1/formats-fundamentals`** |
 | SharePoint PowerShell (SPO) | GOC224 D2 | kryje `day-2/powershell-deep-dive` |
 | Konfigurace, eSignature, SAM, Backup, Archive | GOC224 D2–4 | obsahové služby mimo AI fokus zadání |
@@ -82,7 +82,9 @@ studium a užití skriptů ve vlastní organizaci. Detail: [`LICENSE.md`](LICENS
 
 Převzaté moduly jsou kopie z GOC223/GOC224 k 2026-07-18; moduly `day-1/api-landscape`,
 `day-1/formats-fundamentals`, `day-2/certificates-and-keys`, `day-3/azure-orientation`,
-`day-3/node-typescript` a `day-3/capstone-mini` vznikly pro tento běh (revize 2026-07-28).
+`day-3/opt-node-typescript` a `day-3/capstone-mini` vznikly pro tento běh (revize 2026-07-28);
+`day-3/site-list-templates`, `day-3/spfx-admin` a `day-3/opt-orchestry-intro` doplněny
+posílením D3 (revize 2026-07-30).
 Odkazy uvnitř modulů na bloky, které v tomto výběru nejsou, vedou do `backlog/` nebo
 textově na plný kurz — nejsou to chybějící soubory, ale záměrně vypuštěný obsah.
 Opravy převzatého obsahu dělat v mateřských repech a sem přenášet; nové moduly se

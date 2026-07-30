@@ -39,21 +39,27 @@ cíl dnů 1–3 je sebejistá, bezpečná práce s API a skripty, ne migrační 
 > softwarovými certifikáty z Labu 3. Hardening na závěr audituje přesně to, co
 > během dne vzniklo.
 
-## Den 3 — Graph prakticky a kde automatizace běží
+## Den 3 — Data, šablony a správa rozšíření
 
-| # | Blok | Slug | Typ |
-|---|---|---|---|
-| 1 | Microsoft Graph prakticky *(Lab 4: čtení dat — Graph Explorer → skript)* | `day-3/graph-fundamentals` | P |
-| 2 | Azure orientace: subscription, RBAC, kde skript běží (+ kontejnery) | `day-3/azure-orientation` | P |
-| 3 | Node.js & TypeScript — druhá cesta k API *(živé demo)* | `day-3/node-typescript` | P |
-| 4 | Mini-capstone: vlastní skript s Copilot Chat *(Lab 5)* | `day-3/capstone-mini` | P |
+| # | Blok | Slug | Typ | Čas |
+|---|---|---|---|---|
+| 1 | Microsoft Graph prakticky *(Lab 4 + živá dema přístupu k datům)* | `day-3/graph-fundamentals` | P | 45 + 60 |
+| 2 | Site templates & list templates *(lab: šablona z hotového webu)* | `day-3/site-list-templates` | P | 40 + 30 |
+| 3 | Správa SPFx: App Catalog, API access, tenant-wide extensions *(demo)* | `day-3/spfx-admin` | P | 40 + 15 |
+| 4 | Azure orientace: subscription, RBAC, kde skript běží (+ kontejnery) | `day-3/azure-orientation` | P | 30 + 15 |
+| 5 | Node.js & TypeScript — druhá cesta k API *(demo)* | `day-3/opt-node-typescript` | V | 20 |
+| 6 | Orchestry — úvod do 3rd-party governance | `day-3/opt-orchestry-intro` | V | 20 |
+| 7 | Mini-capstone: vlastní skript s Copilot Chat *(Lab 5)* | `day-3/capstone-mini` | P | 10 + 60 + 20 |
 
 > [!NOTE]
-> Graph blok začíná Graph Explorerem (`$select`/`$filter`, paging) — batch, delta a
-> throttling jen jako výhled „co vás čeká, až porostete". Mini-capstone uzavírá
-> automatizační část: každý účastník si s Copilot Chatem připraví, zreviduje a otestuje
-> vlastní skript nad svým pracovním webem — tj. přesně workflow, který si odnáší
-> do praxe. Node/TS demo nemá lab — cíl je vědět, že cesta existuje, ne ji ovládat.
+> **Povinné bloky = ~5 h 45 min čistého času** — den je plný a volitelné bloky se
+> spouští jen při reálné rezervě (uvolňovací ventil v tomto pořadí: `opt-node-typescript`,
+> `opt-orchestry-intro`, pak zkrácení `azure-orientation` na 20 min). Osa dne:
+> **čtu data** (Graph + zásobník živých demo dotazů) → **vyrábím prostředí ze šablon**
+> (site/list templates) → **spravuji, co v tenantu běží** (SPFx, API access — přímé
+> navázání na permissions z D2) → **vím, kde to poběží** (Azure) → **skládám vlastní
+> skript** (capstone). Mini-capstone se nekrátí; je to hlavní výstup celé automatizační
+> části a zdroj „first automation" plánů.
 
 ## Den 4 — AI: základy, Copilot & první agenti
 

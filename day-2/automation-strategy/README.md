@@ -19,7 +19,7 @@ pro potřebnou operaci nebo kde je nutná jemná kontrola nad chybovými stavy (
 Vedle PowerShell trojice mapa obsahuje dva doplňky s úzkou rolí: **CLI for Microsoft 365**
 (npm/Node, bez PowerShell závislosti) pro CI/CD pipeline a SPFx tooling — ne jako obecnou
 alternativu PnP pro administraci; a **TypeScript/Node cestu** (Graph JS SDK + PnPjs) pro
-vývojářské týmy — demo a detail v [`../../day-3/node-typescript/`](../../day-3/node-typescript/).
+vývojářské týmy — demo a detail v [`../../day-3/opt-node-typescript/`](../../day-3/opt-node-typescript/).
 Širší mapa modulů mimo fokus kurzu (Exchange, Teams, Entra, Power Platform) a jejich
 evoluce je v [`../../GLOSSARY.md`](../../GLOSSARY.md) — klíčová pointa: **moduly umírají
 (MSOnline, AzureAD), REST API zůstává** — proto se kurz učí principy nad Graph/REST, ne

@@ -84,6 +84,10 @@ V tomto kurzu jen orientačně — plná hloubka je v mateřském kurzu GOC223.
 Viz [`lab-graph-ingest.md`](lab-graph-ingest.md).
 
 ## Tipy
+- **Živá dema přístupu k datům**: [`demo-live-data.md`](demo-live-data.md) — zásobník
+  spustitelných vzorů (uživatelé, weby, položky seznamu, soubory, search, členství
+  skupin, report do CSV, dávkový zápis), vždy Graph i PnP vedle sebe a s pointou
+  „co si všimnout". Odtud berte vzory pro Lab 5 i pro prompty Copilotu.
 - **Tahák SPO API**: [`tips-spo-api.md`](tips-spo-api.md) — jak zjistit ID webu/site/seznamu,
   definici seznamu a knihovny, **interní názvy polí** a povolené hodnoty choice polí
   (Graph / PnP / REST vedle sebe). Budete ho potřebovat v Labu 5 i v praxi.

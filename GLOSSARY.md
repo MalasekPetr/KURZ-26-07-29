@@ -62,7 +62,7 @@ Alternativa k PowerShellu pro vývojářské týmy: **Graph JS SDK**
 (`@microsoft/microsoft-graph-client` + `@microsoft/microsoft-graph-types`) s
 `@azure/identity` credentials (stejná auth matice jako PowerShell) a **PnPjs**
 (`@pnp/sp`) pro SPO-native volání. Detail:
-[`day-3/node-typescript/explainer-typescript-graph.md`](day-3/node-typescript/explainer-typescript-graph.md).
+[`day-3/opt-node-typescript/explainer-typescript-graph.md`](day-3/opt-node-typescript/explainer-typescript-graph.md).
 
 ## App registrace vs Enterprise Application
 

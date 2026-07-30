@@ -1,6 +1,6 @@
 # Lab 5 · Mini-capstone: od zadání k otestovanému skriptu
 
-> Odhad: 75 min · Režim: živý tenant (zápis jen nad vlastním `-dev` webem)
+> Odhad: 60 min · Režim: živý tenant (zápis jen nad vlastním `-dev` webem)
 
 ## Cíl
 

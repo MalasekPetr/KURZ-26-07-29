@@ -1,6 +1,6 @@
 # Azure orientace: subscription, RBAC, kde skript běží
 
-> Typ: povinný · Den: 3 · Odhad: 45 min výklad + 30 min živé demo
+> Typ: povinný · Den: 3 · Odhad: 30 min výklad + 15 min živé demo (při skluzu dne první ke zkrácení)
 
 ## Cíle
 - Orientovat se v základních stavebních kamenech Azure: tenant vs subscription vs
