@@ -1,0 +1,15 @@
+# Lokální nástroje a IDE
+.claude/
+.vs/
+
+# Tajemství a credentials — NIKDY do repa (viz day-1/onboarding/ways-of-working.md)
+*.pfx
+*.p12
+*.key
+*credentials*
+student-credentials.csv
+
+# Výstupy labů a dočasné soubory
+report.csv
+*.log
+temp.ps1
