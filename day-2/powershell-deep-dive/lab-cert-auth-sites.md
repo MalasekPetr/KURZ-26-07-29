@@ -32,10 +32,34 @@ vytvoří pracovní weby (DEV/TEST/PROD), nad kterými poběží Graph lab i min
    Export-Certificate -Cert $cert -FilePath .\course-app.cer   # JEN verejna cast
    ```
 
+   **Kde certifikát najdu — úložiště certifikátů.** Windows má úložiště dvojí:
+   **uživatele** (`certmgr.msc`, PowerShellem `Cert:\CurrentUser\...`) a **počítače**
+   (`certlm.msc`, `Cert:\LocalMachine\...`, vyžaduje admin — sem patří certy pro
+   scheduled tasky, viz D3). Právě vygenerovaný cert leží v uživatelském úložišti,
+   složka *Osobní* — pozor, PowerShell jí říká `My` (`Cert:\CurrentUser\My`).
+   Úložiště je v PowerShellu obyčejný „disk":
+
+   ```powershell
+   Get-ChildItem Cert:\CurrentUser\My |
+     Where-Object Subject -like "*course-app*" |
+     Select-Object Subject, Thumbprint, NotAfter
+   ```
+
+   Ověřte si oboje cesty: v `certmgr.msc` dvojklikem na cert („Máte privátní klíč,
+   který odpovídá tomuto certifikátu") a zkuste pravý klik → *Všechny úkoly →
+   Exportovat* — volba „exportovat privátní klíč" je šedivá. To je `NonExportable`
+   v akci; k tématu se vrátí odpolední blok
+   [`../certificates-and-keys/`](../certificates-and-keys/) i YubiKey demo.
+
 3. **Nahrát veřejnou část** (`.cer`) na app registraci (Certificates & secrets →
    Certificates → Upload). Soubor `.cer` je jediné, co stroj opouští — žádný `.pfx`,
    žádný private key, nic do repa (ověř `.gitignore`).
-4. **App-only přihlášení** bez promptu:
+4. **Demonstrace priming promptu, verze 1 → 2**: než napíšete připojení sami, zkuste
+   Test B z [`../../day-1/formats-fundamentals/copilot-priming-prompt.md`](../../day-1/formats-fundamentals/copilot-priming-prompt.md) —
+   s verzí 1 nechte Copilota navrhnout PnP připojení (typicky vygeneruje
+   `Connect-PnPOnline` **bez `-ClientId`** — spadlo by), pak v nové konverzaci
+   s verzí 2 totéž (návrh je správně). Od teď používáte verzi 2.
+5. **App-only přihlášení** bez promptu:
 
    ```powershell
    Connect-PnPOnline -Url "https://<tenant>-admin.sharepoint.com" `
@@ -43,7 +67,26 @@ vytvoří pracovní weby (DEV/TEST/PROD), nad kterými poběží Graph lab i min
      -Thumbprint $cert.Thumbprint
    ```
 
-5. **Skriptem vytvořit tři pracovní weby** dle naming konvence — parametrizovaně, ne
+   **Hned po připojení ověřte, že jste připojení a kdo jste** (návyk na celý kurz):
+
+   ```powershell
+   # 1. Detaily připojení — kam a jak jsem připojený
+   Get-PnPConnection | Select-Object Url, ConnectionType, ClientId, Tenant
+
+   # 2. Základní analýza tokenu
+   $t = Get-PnPAccessToken -ResourceTypeName SharePoint -Decoded
+   $t.Payload.aud     # očekáváte: https://<tenant>.sharepoint.com
+   $t.Payload.roles   # očekáváte: Sites.FullControl.All (app-only = roles, žádné upn)
+
+   # 3. Reálné volání — teprve tohle je důkaz
+   Get-PnPTenantSite | Select-Object -First 3
+   ```
+
+   Když cokoli selže (`Unauthorized`, `AADSTS…`, „not of type RSA"), postupujte podle
+   [`troubleshooting-auth.md`](troubleshooting-auth.md) — pokrývá typické scénáře
+   včetně pasti Delegated vs. Application permission.
+
+6. **Skriptem vytvořit tři pracovní weby** dle naming konvence — parametrizovaně, ne
    copy-paste třikrát:
 
    ```powershell
@@ -54,18 +97,20 @@ vytvoří pracovní weby (DEV/TEST/PROD), nad kterými poběží Graph lab i min
    }
    ```
 
-6. **Zabalit do `Connect-CourseTarget` wrapperu**: funkce s parametry
+7. **Zabalit do `Connect-CourseTarget` wrapperu**: funkce s parametry
    `-Module (PnP|Graph|SPO)` a `-AuthMode (Interactive|DeviceCode|Certificate)`, uvnitř
    mapování na správný `Connect-*` cmdlet, strukturovaný log každého připojení (timestamp,
    modul, auth mode, výsledek — objekt/JSON, ne `Write-Host`). Certificate větev právě
-   ověřena kroky 4-5; Interactive/DeviceCode doplnit a otestovat.
+   ověřena kroky 5-6; Interactive/DeviceCode doplnit a otestovat.
 
 ## Ověření
 
 - [ ] Certifikát existuje v `Cert:\CurrentUser\My` s `NonExportable` klíčem; v pracovní
       složce ani repu není žádný `.pfx`/private key.
-- [ ] App registrace má nahranou veřejnou část certifikátu a přihlášení kroku 4 proběhne
+- [ ] App registrace má nahranou veřejnou část certifikátu a přihlášení kroku 5 proběhne
       **bez jakéhokoli interaktivního promptu**.
+- [ ] Účastník ověřil připojení všemi třemi úrovněmi (connection → token → reálné
+      volání) a umí v tokenu ukázat `roles` a vysvětlit, proč chybí `upn`.
 - [ ] Existují weby `-dev`, `-test`, `-prod` dle naming konvence, vytvořené skriptem
       (ne ručně v UI).
 - [ ] `Connect-CourseTarget` funguje minimálně pro kombinace PnP+Certificate a
@@ -77,5 +122,5 @@ vytvoří pracovní weby (DEV/TEST/PROD), nad kterými poběží Graph lab i min
 - Pokud `New-PnPSite` v app-only režimu selže (tenant policy), vytvořit weby pod delegated
   přihlášením (`-Interactive`) a app-only certifikátovou cestu ověřit na čtecí operaci
   (`Get-PnPSite`) — cíl labu (cert bez promptu) zůstává splněn.
-- Pokud se týž den nestihne krok 6, Interactive/DeviceCode větve wrapperu se doplní jako
+- Pokud se týž den nestihne krok 7, Interactive/DeviceCode větve wrapperu se doplní jako
   domácí rozcvička před D3 — Graph lab a mini-capstone v D3 wrapper předpokládají.

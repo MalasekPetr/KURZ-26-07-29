@@ -37,7 +37,11 @@ se soubory PEM. PowerShell 7 je multiplatformní — proto je dobré znát oboj�
 `Cert:\CurrentUser\My` (můj profil) vs `Cert:\LocalMachine\My` (celý stroj — potřebuje
 ho scheduled task pod servisním účtem; vracíme se k tomu v
 [`../../day-3/azure-orientation/`](../../day-3/azure-orientation/)). Prohlížení:
-`certmgr.msc` / `certlm.msc`, nebo PowerShellem `Get-ChildItem Cert:\CurrentUser\My`.
+`certmgr.msc` (uživatel) / `certlm.msc` (počítač, admin), nebo PowerShellem
+`Get-ChildItem Cert:\CurrentUser\My` — úložiště je v PowerShellu obyčejný „disk".
+Jazyková past: složka, které české GUI říká **Osobní**, se v PowerShellu jmenuje
+**`My`**. Struktura je vždy *scope → store*: vedle `My` existují `Root` (důvěryhodné
+kořenové CA — nesahat) a `CA` (zprostředkující); v kurzu používáme výhradně `My`.
 Klíčový atribut z Labu 3: **NonExportable** — privátní klíč vygenerovaný tak, že ho
 Windows odmítne exportovat; první stupeň ochrany proti zkopírování.
 

@@ -26,7 +26,17 @@ přistanou v SPO modulu dřív než v PnP ekvivalentu.
   pro ad-hoc práci na vlastním stroji.
 - **Device code** — dvoukrokový flow pro headless/omezená zařízení: aplikace vygeneruje kód,
   uživatel ho zadá na jiném zařízení přes browser a projde běžnou autentizací včetně MFA;
-  nevyžaduje client secret. Dostupné jen pro public client aplikace.
+  nevyžaduje client secret. Dostupné jen pro **public client** aplikace — tj. aplikace
+  běžící na zařízení uživatele (konzole, desktop), které neumí udržet tajemství, a proto
+  se prokazuje jen uživatel, ne aplikace. Technický detail, který ušetří hodinu ladění:
+  device code **nemá redirect URI**, takže Entra nemůže typ klienta odvodit z platformy
+  a sáhne po fallbacku — přepínači *Authentication → Allow public client flows*
+  (`isFallbackPublicClient`; nastavoval ho Lab 2). Vypnutý fallback = `AADSTS7000218`.
+  Interaktivního přihlášení se přepínač **netýká** — tam Entra typ pozná z redirect URI
+  `http://localhost` na platformě *Mobile and desktop applications*, proto `-Interactive`
+  funguje i s vypnutým přepínačem. Protipól je **confidential client** — aplikace mimo
+  dosah uživatele (server, Function), která se prokazuje vlastním credentialem: přesně
+  to dělá certifikátový app-only režim níže. Jedna app registrace může podporovat obojí.
 - **Certifikát** — asymetrický klíč nahraný jako app credential místo sdíleného secretu;
   Microsoft doporučuje certifikáty jako bezpečnější variantu pro app-only scénáře (dávkové
   operace, žádný přihlášený uživatel).
@@ -43,21 +53,54 @@ flowchart TD
   D -->|Mimo Azure / CI| F[Certificate]
 ```
 
+### Ověření stavu připojení — první příkazy po každém Connect
+Návyk od prvního připojení: **connection objekt → token → reálné volání.** Připojení
+není důkaz oprávnění (authn ≠ authz) — důkaz je až token a odpověď serveru.
+
+```powershell
+# 1. Kam a jak jsem připojený (stav v paměti PowerShellu)
+Get-PnPConnection | Select-Object Url, ConnectionType, ClientId, Tenant
+
+# 2. Základní analýza tokenu — koho/co token skutečně reprezentuje
+$t = Get-PnPAccessToken -ResourceTypeName SharePoint -Decoded
+$t.Payload.aud     # audience: https://<tenant>.sharepoint.com
+$t.Payload.roles   # app-only: aplikační oprávnění (Sites.FullControl.All…)
+$t.Payload.upn     # delegated: přihlášený uživatel (u app-only správně chybí)
+
+# 3. Reálné volání — teprve tohle je důkaz
+Get-PnPWeb | Select-Object Title, Url
+```
+
+Čtení tokenu je nejrychlejší rozlišení identity: **app-only má `roles` a žádné `upn`;
+delegated má `upn` a žádné `roles`.** Když krok 3 selže, postupujte podle
+[`troubleshooting-auth.md`](troubleshooting-auth.md).
+
 ## Klíčové rozlišení
 - **PnP.PowerShell vs SPO Management Shell** — viz `GLOSSARY.md`; PnP pro čitelnost a širší
   funkčnost, SPO modul pro tenant-wide nastavení bez PnP ekvivalentu.
 - **Interaktivní/device code (delegated) vs certifikát/managed identity (app-only)** — první
   dvojice vyžaduje přihlášeného uživatele a jeho oprávnění, druhá běží jako samostatná identita
   s vlastními aplikačními oprávněními.
+- **Public client vs confidential client** — prokazuje se člověk vs prokazuje se aplikace;
+  public client (konzole na stroji uživatele) tajemství neudrží, confidential client
+  (server/Function) drží secret/certifikát. Interactive + device code = public client
+  flows; certifikátový app-only = confidential. Definice v [`../../GLOSSARY.md`](../../GLOSSARY.md).
 - **Systémově vs uživatelsky přiřazená managed identity** — 1:1 vázaná na resource vs sdílená
   napříč více resourcy s nezávislým životním cyklem.
 
 ## Lab
 Viz [`lab-cert-auth-sites.md`](lab-cert-auth-sites.md) — nosný lab dne: certifikát,
 bezpečné uložení, app-only přihlášení, skriptované vytvoření pracovních webů a unified
-connect wrapper.
+connect wrapper. Navazuje [`lab-write-identities.md`](lab-write-identities.md) —
+mini-lab „tři podpisy zápisu": tentýž seznam zapsaný přes UI, delegated a app-only,
+rozdíl viditelný ve sloupci Vytvořil.
 
 ## Tipy
+- **Tahák na troubleshooting připojení**: [`troubleshooting-auth.md`](troubleshooting-auth.md)
+  — jak ověřit, že jsem připojený (connection → token → reálné volání), tabulka
+  symptomů (`AADSTS700016`, `AADSTS7000218`, „not of type RSA", 401 s prázdnou
+  odpovědí = Delegated vs. Application past) a proč se po každé změně consentu
+  připojovat znovu.
 - Instalaci tří modulů spusťte hned na začátku bloku na pozadí — na pomalejší síti
   zabere 10–15 minut.
 - Nikdy neexportujte `.pfx` „pro zálohu" — pointa labu je, že privátní klíč nikdy

@@ -9,8 +9,9 @@
 ## Výklad
 
 ### Minimalizace záběru — audit permissions
-Projít permissions přiřazené app registraci během dnešních labů (Lab 2: delegated,
-Lab 3: application `Sites.FullControl.All`) a odebrat vše, co reálně nebylo použito nebo
+Projít permissions přiřazené app registraci během dnešních labů (Lab 2: delegated
+Graph `Sites.Read.All`, Lab 3: application `Sites.FullControl.All`, mini-lab: delegated
+`AllSites.Write`) a odebrat vše, co reálně nebylo použito nebo
 má přesnější (užší) alternativu — stejný princip jako v [`../automation-strategy/`](../automation-strategy/),
 teď aplikovaný na skutečnou historii použití, ne na odhad předem. V praxi je
 tohle klíčový rituál: oprávnění se dají kdykoli zpětně zúžit a doložit auditem.

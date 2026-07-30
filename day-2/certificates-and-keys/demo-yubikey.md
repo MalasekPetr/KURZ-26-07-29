@@ -18,9 +18,13 @@ mimo čip.**
 2. **Klíč vzniká v čipu**:
 
    ```text
-   ykman piv keys generate --algorithm ECCP384 --pin-policy once --touch-policy always 9a pubkey.pem
+   ykman piv keys generate --algorithm RSA2048 --pin-policy once --touch-policy always 9a pubkey.pem
    ```
 
+   Pozor: **musí být RSA** — Entra/MSAL podporuje pro certifikátové app-only přihlášení
+   jen RSA podpisy; s ECC klíčem (`ECCP256/384`) skončí `Connect-PnPOnline` chybou
+   *„The provided certificate is not of type RSA"*. Generování RSA v čipu trvá
+   i desítky sekund — klíč opravdu počítá, nechte doběhnout.
    `pubkey.pem` otevřený v editoru je textový PEM s `BEGIN PUBLIC KEY` — **tohle je
    všechno, co kdy čip opustí** (vazba na tabulku formátů ve [`README.md`](README.md)).
 3. **Certifikát nad klíčem**:

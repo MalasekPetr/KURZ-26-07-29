@@ -14,7 +14,7 @@ cíl dnů 1–3 je sebejistá, bezpečná práce s API a skripty, ne migrační 
 | 1 | Onboarding & pravidla práce | `day-1/onboarding` | P |
 | 2 | Mapa API M365 & SPO: minulost, současnost a budoucnost *(cvičení Graph Explorer)* | `day-1/api-landscape` | P |
 | 3 | Formáty dat (JSON, YAML, XML, CSV), UTF-8 a PowerShell od nuly *(Lab 1: první skript s Copilot Chat)* | `day-1/formats-fundamentals` | P |
-| 4 | VS Code + Copilot Chat workflow | `day-1/vscode-copilot-env` | P |
+| 4 | VS Code, Git a Copilot Chat workflow | `day-1/vscode-copilot-env` | P |
 
 > [!NOTE]
 > `api-landscape` odpovídá na otázku „proč je automatizace bezpečná" (data zůstávají
@@ -28,7 +28,7 @@ cíl dnů 1–3 je sebejistá, bezpečná práce s API a skripty, ne migrační 
 | # | Blok | Slug | Typ |
 |---|---|---|---|
 | 1 | Nástrojová mapa & app registrace *(Lab 2: registrace aplikace, delegated vs application)* | `day-2/automation-strategy` | P |
-| 2 | PowerShell moduly & autentizace *(Lab 3: certifikát, app-only, pracovní weby)* | `day-2/powershell-deep-dive` | P |
+| 2 | PowerShell moduly & autentizace *(Lab 3: certifikát, app-only, pracovní weby + mini-lab: tři podpisy zápisu)* | `day-2/powershell-deep-dive` | P |
 | 3 | Certifikáty a klíče v praxi: CER/PEM/PFX, stores, YubiKey *(živé demo)* | `day-2/certificates-and-keys` | P |
 | 4 | Security hardening & least privilege | `day-2/security-hardening` | P |
 

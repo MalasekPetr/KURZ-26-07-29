@@ -37,6 +37,16 @@ Postavit agenta **HR Asistent** v Agent Builderu nad daty zaměstnanců a na vla
 
 8. Analytický dotaz neprošel. Kdo ho umí? **Zítra Copilot Studio** nad týmiž daty.
 
+### Bonus (při rezervě) — Scripting Assistant z priming promptu
+
+9. Vezměte finální verzi priming promptu z D1–3
+   ([`../../day-1/formats-fundamentals/copilot-priming-prompt.md`](../../day-1/formats-fundamentals/copilot-priming-prompt.md) plus
+   vlastní pravidla, která jste za tři dny přidali) a postavte z ní druhého agenta
+   **Scripting Assistant**: pravidla = instrukce agenta, knowledge žádná (případně
+   kurzovní repo). Otestujte Testem B (PnP připojení) — a od téhle chvíle už prompt
+   nevkládáte: **z priming promptu se stal agent**. Přesně tahle cesta
+   (prompt → otestovaná pravidla → agent) je pointa AI části kurzu.
+
 ## Ověření
 
 - [ ] Evaluační plán má lookup, hledání v souboru, analytický, negativní a test hranice práv.

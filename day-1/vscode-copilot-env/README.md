@@ -1,4 +1,4 @@
-# VS Code + Copilot Chat workflow
+# VS Code, Git a Copilot Chat workflow
 
 > Typ: povinný · Den: 1 · Odhad: 45 min výklad + 45 min lab
 

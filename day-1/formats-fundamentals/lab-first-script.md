@@ -12,8 +12,9 @@ API se zatím nevolá — autentizace přijde v D2.
 
 - VS Code + PowerShell extension (PowerShell 7).
 - Přihlášený M365 Copilot Chat (kurzovní účet, ikona štítu = firemní ochrana dat).
-- Vstupní soubor `sites.json` od instruktora (fiktivní seznam webů: název, vlastník,
-  počet dokumentů, poslední aktivita).
+- Vstupní soubor [`sites.json`](sites.json) (součást tohoto modulu — 15 fiktivních
+  webů: `name`, `owner`, `docCount`, `lastActivity`; 6 z nich je bez aktivity přes
+  180 dní, ať má filtrování co najít).
 
 ## Kroky
 
@@ -26,9 +27,10 @@ API se zatím nevolá — autentizace přijde v D2.
    `Get-Content sites.json | ConvertFrom-Json` → uložit do `$sites` → `$sites | Get-Member`
    → `$sites | Where-Object docCount -gt 100 | Sort-Object lastActivity`.
 3. **Priming prompt proti fantazii**: otevřít novou konverzaci v Copilot Chat a jako
-   první zprávu vložit celý blok z [`copilot-priming-prompt.md`](copilot-priming-prompt.md).
-   Pak otestovat návnadou (neexistující cmdlet — postup tamtéž) a sledovat, jak model
-   reaguje. Teprve potom zadat úlohu — česky, s akceptačními kritérii, např.:
+   první zprávu vložit **verzi 1** z [`copilot-priming-prompt.md`](copilot-priming-prompt.md).
+   Pak otestovat návnadou (Test A — neexistující cmdlet, postup tamtéž) a sledovat,
+   jak model reaguje. (Test B a verze 2 přijdou v D2, až se poprvé připojíte
+   k tenantu.) Teprve potom zadat úlohu — česky, s akceptačními kritérii, např.:
    *„Napiš PowerShell 7 skript. Vstup: cesta k JSON souboru se seznamem webů (pole
    objektů s poli name, owner, docCount, lastActivity). Výstup: tabulka webů bez
    aktivity za posledních 180 dní, seřazená od nejstarší. Skript má mít param() pro

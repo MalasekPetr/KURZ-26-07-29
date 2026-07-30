@@ -88,6 +88,20 @@ na úrovni celého tenantu — každé navíc je rozšíření útočné plochy.
 tam, kde to dává smysl, a u app-only vždy sepsat přesný seznam permissions
 s odůvodněním (viz [`day-2/security-hardening/`](day-2/security-hardening/)).
 
+**Public client vs confidential client** — dělení aplikací podle toho, zda umí udržet
+tajemství. **Confidential client** běží mimo dosah uživatele (server, Azure Function)
+a při přihlášení prokazuje sám sebe vlastním credentialem (certifikát, secret).
+**Public client** běží na zařízení uživatele (PowerShell konzole, desktop, mobil) —
+cokoli zadrátovaného by šlo vytáhnout, proto se prokazuje **jen uživatel**, aplikace
+nic nedokazuje. **Jak Entra typ pozná:** primárně z platformy redirect URI (*Web* =
+confidential, *Mobile and desktop applications* / *SPA* = public — proto `-Interactive`
+s redirectem `http://localhost` funguje bez dalšího nastavování); u flow **bez redirect
+URI** (device code, ROPC) rozhoduje fallback přepínač *Allow public client flows*
+(`isFallbackPublicClient`) — vypnutý = `AADSTS7000218`. Certifikátový app-only režim
+je confidential z podstaty. Jedna app registrace může podporovat obojí — jako kurzovní
+`<jmeno.prijmeni>-course-app`. Mnemotechnika: *public = prokazuje se člověk,
+confidential = prokazuje se aplikace.*
+
 **FIDO2 / WebAuthn (passkey)** — standard pro passwordless, phishing-resistant
 přihlášení **člověka**: privátní klíč v hardwaru (YubiKey, TPM, telefon) podepisuje
 výzvu služby, heslo neexistuje a podpis je vázaný na doménu (falešná přihlašovací

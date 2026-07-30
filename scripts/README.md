@@ -24,7 +24,7 @@ z instruktorského kanálu — nikdy není součástí repa.
 |---|---|---|---|
 | 1. Účty studentů (vytvoření/reaktivace, E5 licence, role GA) | `New-CourseStudents.ps1` `[PLÁNOVANÉ]` | Graph | `day-1/onboarding` |
 | 2. Studentské weby — **jen fallback** (účastníci si `-dev/-test/-prod` weby vytváří sami v Labu 3) + seedování demo obsahu | `New-CourseStudentSites.ps1` `[PLÁNOVANÉ]` | PnP | `day-2/powershell-deep-dive` |
-| 3. Demo data pro Graph lab (dost webů/položek na reálné stránkování) + `sites.json` pro Lab 1 — **vše s českou diakritikou, UTF-8** (Lab 1 na tom staví round-trip test) | `New-CourseSeedData.ps1` `[PLÁNOVANÉ]` | PnP/Graph | `day-1/formats-fundamentals`, `day-3/graph-fundamentals` |
+| 3. Demo data pro Graph lab (dost webů/položek na reálné stránkování) — **vše s českou diakritikou, UTF-8**; `sites.json` pro Lab 1 už je v repu (`day-1/formats-fundamentals/sites.json`) | `New-CourseSeedData.ps1` `[PLÁNOVANÉ]` | PnP/Graph | `day-1/formats-fundamentals`, `day-3/graph-fundamentals` |
 | 4. Instruktorské Azure demo (resource group, Function App s managed identity) | `New-CourseDemoAzureResources.ps1` `[PLÁNOVANÉ]` | Az/ARM | `day-3/azure-orientation` |
 | 5. Offboarding — smazání obsahu a artefaktů studentů (weby, app registrace) | `Remove-CourseStudentData.ps1` `[PLÁNOVANÉ]` | Graph + PnP | — |
 | 6. Offboarding — Azure demo cleanup | `Remove-CourseDemoAzureResources.ps1` `[PLÁNOVANÉ]` | Az/ARM | — |

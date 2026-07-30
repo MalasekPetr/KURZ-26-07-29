@@ -10,7 +10,7 @@ vygenerovaný s M365 Copilot Chat, přečtený a otestovaný.
 | 1 | Onboarding & pravidla práce | [`onboarding`](onboarding/) | P |
 | 2 | Mapa API M365 & SPO: minulost, současnost a budoucnost *(cvičení Graph Explorer)* | [`api-landscape`](api-landscape/) | P |
 | 3 | Formáty dat (JSON, YAML, XML, CSV), UTF-8 a PowerShell od nuly *(Lab 1)* | [`formats-fundamentals`](formats-fundamentals/) | P |
-| 4 | VS Code + Copilot Chat workflow | [`vscode-copilot-env`](vscode-copilot-env/) | P |
+| 4 | VS Code, Git a Copilot Chat workflow | [`vscode-copilot-env`](vscode-copilot-env/) | P |
 
 > [!NOTE]
 > Žádný blok dne nepředpokládá znalost PowerShellu, Gitu ani API — všechno se staví

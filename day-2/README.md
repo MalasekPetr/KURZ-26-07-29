@@ -8,7 +8,7 @@ udržet čisté (least privilege audit a rotace bez výpadku).
 | Pořadí | Blok | Slug | Typ |
 |---|---|---|---|
 | 1 | Nástrojová mapa & app registrace *(Lab 2)* | [`automation-strategy`](automation-strategy/) | P |
-| 2 | PowerShell moduly & autentizace *(Lab 3)* | [`powershell-deep-dive`](powershell-deep-dive/) | P |
+| 2 | PowerShell moduly & autentizace *(Lab 3 + mini-lab: tři podpisy zápisu)* | [`powershell-deep-dive`](powershell-deep-dive/) | P |
 | 3 | Certifikáty a klíče: CER/PEM/PFX, stores, YubiKey *(demo)* | [`certificates-and-keys`](certificates-and-keys/) | P |
 | 4 | Security hardening & least privilege | [`security-hardening`](security-hardening/) | P |
 

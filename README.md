@@ -22,8 +22,8 @@ a testování skriptů. Žádné vstupní znalosti se nepředpokládají.
 - **Prostředí kurzu** (tenanty, Azure, PAYG) je v [`environment.md`](environment.md).
 - Moduly s prefixem `opt-` jsou **volitelné** — spouští se dle času; nikdy na nich
   nesmí záviset povinný modul ani capstone.
-- **`backlog/`** obsahuje moduly vyřazené revizí 2026-07-28 (viz níže) — nejsou v agendě,
-  ale zůstávají funkční pro navazující běh.
+- **`backlog/`** obsahuje moduly mimo agendu tohoto běhu — vyřazené revizí 2026-07-28
+  (viz níže) i nově napsané kandidáty (např. `git-fundamentals`) pro navazující běh.
 - Currency-markery v textu (interní konvence; marker + popis na prvním řádku bloku):
   - `> [!WARNING]` + „Ověřit k datu běhu" — fast-moving fakt (ceny, preview, throttling limity, verze modulů).
   - `> [!IMPORTANT]` — lineage / přejmenování / API breaking change, na které účastníky upozornit.

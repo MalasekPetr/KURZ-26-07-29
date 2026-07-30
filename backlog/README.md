@@ -1,11 +1,13 @@
-# Backlog — moduly vyřazené revizí 2026-07-28
+# Backlog — kandidáti na navazující běh
 
-Moduly původního automatizačního výběru (GOC223), vyřazené při přeorientování dnů 1–3
-na začátečnickou cílovku (viz [`../README.md`](../README.md)). Obsahově zůstávají platné
-a jsou kandidáty na **navazující běh pro pokročilé**.
+Moduly, které v tomto běhu nejsou v agendě: většinou původní automatizační výběr
+(GOC223) vyřazený při přeorientování dnů 1–3 na základy (viz [`../README.md`](../README.md)),
+plus nové moduly napsané rovnou jako kandidáti. Obsahově jsou platné a tvoří zásobník
+pro **navazující běh pro pokročilé**.
 
 | Modul | Původní zařazení |
 |---|---|
+| [`git-fundamentals`](git-fundamentals/) | — nový modul (2026-07-30): Git do hloubky, branch/PR/konflikt ve dvojici, založení Azure DevOps organizace; rozvíjí `day-1/vscode-copilot-env` |
 | [`staging-environments`](staging-environments/) | D2 — staging DEV/TEST/PROD, diff/baseline skript |
 | [`migration-patterns`](migration-patterns/) | D2 — skladba migrací, SPMT, wave planning (Lab) |
 | [`provisioning-patterns`](provisioning-patterns/) | D3 — PnP provisioning šablony (Lab) |
