@@ -37,6 +37,23 @@ opravdu nese: **app-only má `roles` a nemá `upn`; delegated má `upn`+`scp` a 
 | `403 Forbidden` (ne 401) | token role má, ale nestačí na operaci (např. čtecí role vs. zápis) | porovnat `roles` v tokenu s potřebou cmdletu; rozšíření zdůvodnit (hardening!) |
 | Cert nikde ve store (`Cert:\CurrentUser\My`) po YubiKey demu | cert se propisuje při **vložení** klíče; nebo neběží služba propagace / chybí minidriver | vytáhnout/vložit klíč; `Get-Service CertPropSvc` (+ `Start-Service`); `winget install Yubico.YubiKeySmartCardMinidriver`; diagnostika `certutil -scinfo` |
 | Export z YubiKey vrátil „starý" certifikát | `certificates generate` selhal (špatný PIN…) a ve slotu zůstal předchozí cert — **klíč a cert jsou v PIV dva samostatné objekty**, `keys generate` starý cert nemaže | zopakovat `certificates generate` (pozor na zbývající PIN pokusy!), pak teprve export; ověřit pár: `(Get-Item Cert:\...\<thumb>).PublicKey.Oid.FriendlyName` → RSA |
+| „**Access was denied because of a security violation**" (žádný `AADSTS…`) | **lokální** krypto chyba — podpis privátním klíčem neproběhl, požadavek nikdy neodešel. Nejčastěji: klíč s `--touch-policy always` čekal na **dotyk** a vypršel (~15 s); nebo se PIN dialog nemá kde zobrazit (VS Code integrovaný terminál); nebo cert ve store není spárovaný s klíčem na kartě | dotknout se klíče, jakmile bliká dioda; spustit ve **samostatné konzoli** (`pwsh` z Windows Terminal, ne v editoru); izolovat podpis od MSAL (viz test níže); pro demo zvážit `--touch-policy never` |
+
+### Izolace podpisu — funguje vůbec klíč?
+
+Obejde PnP i MSAL a testuje jen čip — nejrychlejší diagnóza „security violation":
+
+```powershell
+$c = Get-Item Cert:\CurrentUser\My\<thumbprint>
+$c.HasPrivateKey          # musí být True
+$rsa = [System.Security.Cryptography.X509Certificates.RSACertificateExtensions]::GetRSAPrivateKey($c)
+$rsa.SignData([byte[]](1..32), 'SHA256', 'Pkcs1') | Out-Null   # → PIN dialog + blikání + dotyk
+```
+
+- **Projde** → čip je v pořádku; problém je v kontextu volání (terminál) nebo v načasování dotyku.
+- **Spadne stejně** → mezi Windows a klíčem: `Get-Service CertPropSvc`, minidriver,
+  `certutil -scinfo`; a pokud je `HasPrivateKey` = `False`, cert ve store není spárovaný
+  s klíčem na kartě (typicky po nekonzistentním stavu slotu — přegenerovat klíč i cert).
 
 ## Dvě pasti na závěr
 

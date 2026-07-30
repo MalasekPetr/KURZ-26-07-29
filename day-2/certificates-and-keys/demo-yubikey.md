@@ -57,10 +57,26 @@ mimo čip.**
   (admin, konzultant) žádoucí; pro bezobslužnou automatizaci by to byla chyba nasazení
   — hardware klíč patří k člověku, scheduled task řeší LocalMachine store nebo managed
   identity (viz žebříček v [`README.md`](README.md)).
+- Dotyk **nikdo neohlásí** — jen bliká dioda na klíči. Když se do ~15 s nedotknete,
+  podpis vyprší a `Connect-PnPOnline` vrátí *„Access was denied because of a security
+  violation"* (lokální krypto chyba, žádný `AADSTS…`). Diagnostika a izolace podpisu:
+  [`../powershell-deep-dive/troubleshooting-auth.md`](../powershell-deep-dive/troubleshooting-auth.md).
+- **PIN dialog je Windows okno** — ve VS Code integrovaném terminálu se někdy nezobrazí;
+  app-only přihlášení s klíčem spouštějte v samostatné konzoli.
 - YubiKey má víc funkcí vedle sebe: PIV (čipová karta — dnešní demo), FIDO2/WebAuthn
   (passwordless přihlášení), OTP. Jsou to oddělené „přihrádky" téhož hardwaru.
 - První připojení po vložení klíče může trvat déle (propagace certifikátu do store) —
   nechat doběhnout.
+
+## Když podpis nejede
+
+Kroky 1–4 (generování v čipu, PEM, upload `.cer`) fungují vždy a nesou hlavní pointu —
+i kdyby krok 5 selhal, demo o smysl nepřijde. Nejčastější zádrhel je *„Access was denied
+because of a security violation"*: nepromarněný dotyk nebo neviditelný PIN dialog
+(viz Tipy výše a [`../powershell-deep-dive/troubleshooting-auth.md`](../powershell-deep-dive/troubleshooting-auth.md)).
+Pro spolehlivý průběh bez závislosti na načasování lze klíč vygenerovat
+s `--touch-policy never` — prokáže se jen PINem. Pointa kroku 6 (privátní klíč nejde
+exportovat) na touch policy nezávisí.
 
 ## Q&A · Co dělat při ztrátě klíče?
 
