@@ -63,17 +63,33 @@ Get-PnPConnection | Select-Object Url, ConnectionType, ClientId, Tenant
 
 # 2. Základní analýza tokenu — koho/co token skutečně reprezentuje
 $t = Get-PnPAccessToken -ResourceTypeName SharePoint -Decoded
-$t.Payload.aud     # audience: https://<tenant>.sharepoint.com
-$t.Payload.roles   # app-only: aplikační oprávnění (Sites.FullControl.All…)
-$t.Payload.upn     # delegated: přihlášený uživatel (u app-only správně chybí)
+$t.Audiences                                    # aud: https://<tenant>.sharepoint.com
+$t.Claims | Where-Object Type -in 'roles','scp','upn','appid','app_displayname' |
+  Select-Object Type, Value
 
 # 3. Reálné volání — teprve tohle je důkaz
 Get-PnPWeb | Select-Object Title, Url
 ```
 
 Čtení tokenu je nejrychlejší rozlišení identity: **app-only má `roles` a žádné `upn`;
-delegated má `upn` a žádné `roles`.** Když krok 3 selže, postupujte podle
-[`troubleshooting-auth.md`](troubleshooting-auth.md).
+delegated má `upn` (+ `scp` se scopes) a žádné `roles`.** Když krok 3 selže, postupujte
+podle [`troubleshooting-auth.md`](troubleshooting-auth.md).
+
+**Token je jen JSON v base64url** — žádná magie: tři části oddělené tečkou (hlavička,
+payload, podpis) a payload je obyčejný JSON, který od D1 umíte číst. Dekódovat ho jde
+i bez PnP a bez závislosti na verzi modulu:
+
+```powershell
+$raw = Get-PnPAccessToken -ResourceTypeName SharePoint
+$p = $raw.Split('.')[1].Replace('-','+').Replace('_','/')
+$p = $p.PadRight($p.Length + (4 - $p.Length % 4) % 4, '=')     # doplnit padding
+$payload = [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($p)) | ConvertFrom-Json
+$payload | Select-Object aud, roles, upn, appid, app_displayname
+```
+
+Proto do tokenu nikdy nepatří tajemství: **kdokoli, kdo token drží, si ho přečte** —
+podpis brání změnám, ne čtení. (Vlastnost `-Decoded` objektu se mezi verzemi PnP
+liší — proto je ruční dekódování spolehlivější volba do skriptů.)
 
 ## Klíčové rozlišení
 - **PnP.PowerShell vs SPO Management Shell** — viz `GLOSSARY.md`; PnP pro čitelnost a širší

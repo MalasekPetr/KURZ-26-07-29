@@ -75,12 +75,16 @@ vytvoří pracovní weby (DEV/TEST/PROD), nad kterými poběží Graph lab i min
 
    # 2. Základní analýza tokenu
    $t = Get-PnPAccessToken -ResourceTypeName SharePoint -Decoded
-   $t.Payload.aud     # očekáváte: https://<tenant>.sharepoint.com
-   $t.Payload.roles   # očekáváte: Sites.FullControl.All (app-only = roles, žádné upn)
+   $t.Audiences                                    # očekáváte: https://<tenant>.sharepoint.com
+   $t.Claims | Where-Object Type -in 'roles','scp','upn','app_displayname' |
+     Select-Object Type, Value                     # app-only = roles, žádné upn
 
    # 3. Reálné volání — teprve tohle je důkaz
    Get-PnPTenantSite | Select-Object -First 3
    ```
+
+   Alternativa nezávislá na verzi modulu (a názorná — payload tokenu je obyčejný JSON):
+   ruční dekódování, viz [`README.md`](README.md) sekce „Ověření stavu připojení".
 
    Když cokoli selže (`Unauthorized`, `AADSTS…`, „not of type RSA"), postupujte podle
    [`troubleshooting-auth.md`](troubleshooting-auth.md) — pokrývá typické scénáře

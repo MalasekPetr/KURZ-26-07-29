@@ -31,7 +31,8 @@ celé identity osy D2: kdo zapsal, je v SPO navždy vidět.
    ```powershell
    Connect-PnPOnline -Url "https://<tenant>.sharepoint.com/sites/<jmeno-prijmeni>-dev" `
      -ClientId $clientId -Interactive
-   (Get-PnPAccessToken -ResourceTypeName SharePoint -Decoded).Payload.upn   # = vy
+   (Get-PnPAccessToken -ResourceTypeName SharePoint -Decoded).Claims |
+     Where-Object Type -eq 'upn' | Select-Object -ExpandProperty Value    # = vy
    Add-PnPListItem -List "Zapisy" -Values @{ Title = "Zápis delegated" }
    ```
 
@@ -40,7 +41,8 @@ celé identity osy D2: kdo zapsal, je v SPO navždy vidět.
    ```powershell
    Connect-PnPOnline -Url "https://<tenant>.sharepoint.com/sites/<jmeno-prijmeni>-dev" `
      -ClientId $clientId -Tenant "<tenant>.onmicrosoft.com" -Thumbprint $thumbprint
-   (Get-PnPAccessToken -ResourceTypeName SharePoint -Decoded).Payload.roles # = app role, žádné upn
+   (Get-PnPAccessToken -ResourceTypeName SharePoint -Decoded).Claims |
+     Where-Object Type -in 'roles','upn' | Select-Object Type, Value   # role ano, upn ne
    Add-PnPListItem -List "Zapisy" -Values @{ Title = "Zápis app-only" }
    ```
 

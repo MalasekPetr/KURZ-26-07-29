@@ -12,9 +12,9 @@ Get-PnPConnection | Select-Object Url, ConnectionType, ClientId, Tenant
 
 # b) Co je v tokenu — koho/co token skutečně reprezentuje
 $t = Get-PnPAccessToken -ResourceTypeName SharePoint -Decoded
-$t.Payload.aud     # audience: pro SPO volání musí být https://<tenant>.sharepoint.com
-$t.Payload.roles   # app-only: aplikační oprávnění (Sites.FullControl.All…)
-$t.Payload.upn     # delegated: přihlášený uživatel (u app-only chybí — správně!)
+$t.Audiences                                    # pro SPO musí být https://<tenant>.sharepoint.com
+$t.Claims | Where-Object Type -in 'roles','scp','upn','appid','app_displayname' |
+  Select-Object Type, Value
 
 # c) Reálné volání — jediný skutečný důkaz
 Get-PnPWeb | Select-Object Title, Url
@@ -24,6 +24,23 @@ Get-PnPTenantSite | Select-Object -First 3     # jen na -admin URL
 (a) je jen objekt v paměti — existuje i s nefunkčním tokenem. (b) říká, co token
 opravdu nese: **app-only má `roles` a nemá `upn`; delegated má `upn`+`scp` a nemá
 `roles`** — nejrychlejší způsob, jak rozlišit, „kdo jsem". (c) je teprve důkaz.
+
+> [!IMPORTANT]
+> **`$t.Payload.aud` nefunguje.** Objekt z `-Decoded` (v PnP 3.x typ
+> `Microsoft.IdentityModel.JsonWebTokens.JsonWebToken`) **nemá vlastnost `Payload`** —
+> dotaz na ni tiše vrátí prázdno, bez chyby. Používejte `.Audiences` a `.Claims`
+> (viz výše), nebo ruční dekódování payloadu, které je nezávislé na verzi modulu:
+>
+> ```powershell
+> $raw = Get-PnPAccessToken -ResourceTypeName SharePoint
+> $p = $raw.Split('.')[1].Replace('-','+').Replace('_','/')
+> $p = $p.PadRight($p.Length + (4 - $p.Length % 4) % 4, '=')
+> [Text.Encoding]::UTF8.GetString([Convert]::FromBase64String($p)) | ConvertFrom-Json |
+>   Select-Object aud, roles, upn, appid, app_displayname
+> ```
+>
+> Je to zároveň učební moment: **tichý prázdný výstup je horší než chyba** — návyk
+> „ověřuj, že příkaz opravdu něco vrátil" platí i na diagnostické příkazy.
 
 ## Krok 2 — tabulka symptomů
 
