@@ -1,6 +1,6 @@
 # Site templates & list templates — prostředí jako šablona
 
-> Typ: povinný · Den: 3 · Odhad: 40 min výklad + 30 min lab
+> Typ: povinný · Den: 3 · Odhad: 40 min výklad + 45 min lab
 
 ## Cíle
 - Rozumět, proč se v moderním SharePointu weby **nekopírují**, ale **provisionují ze
@@ -108,8 +108,17 @@ kontrolu při hromadném provisioningu (hloubka je téma navazujícího běhu,
 - **Asynchronní aplikace** — po založení webu akce ještě běží; skript, který hned
   ověřuje výsledek, může vidět nedokončený stav.
 
-## Lab
-Viz [`lab-site-template.md`](lab-site-template.md).
+## Laby
+Dva laby, každý na jinou stránku téhož tématu — podle času se jede jeden a druhý
+zůstává na doma:
+
+- **[`lab-provision-and-seed.md`](lab-provision-and-seed.md)** (45 min, doporučený) —
+  end-to-end vlastními silami: **web → seznam se sloupci → položky dávkově → dokumenty
+  s metadaty → ověření a report**. Vidíte celý cyklus a všechny best practices
+  pohromadě (interní názvy, index před daty, dávkový zápis, `Add-PnPFile`, UTF-8).
+- **[`lab-site-template.md`](lab-site-template.md)** (30 min) — tentýž výsledek jako
+  *šablona*: naklikat → `Get-PnPSiteScriptFromWeb` → upravit JSON → aplikovat na jiný
+  web. Akcent na „prostředí jako kód".
 
 ## Tipy
 - Nejrychlejší start vlastní šablony: naklikat web, pak `Get-PnPSiteScriptFromWeb` —

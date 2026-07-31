@@ -7,18 +7,48 @@ sekce), takže se nedá nic rozbít.
 Vpravo vždy PnP ekvivalent: tentýž výsledek, jiná obálka nad tímtéž API — praktický
 důkaz věty „moduly jsou wrappery" z D1.
 
-## 1. Uživatelé — `$select`, `$filter`, `$top`
+## Pravidla, kterými se příklady drží
+
+Žádné triky ani obcházení — všechno jsou doporučené postupy Microsoftu. Sedm pravidel,
+podle kterých poznáte dobrý skript (a která patří i do promptu pro Copilota):
+
+1. **Hotový cmdlet před vlastním voláním REST.** Existuje-li cmdlet (`Get-MgUser`,
+   `Get-PnPList`), použijte ho — má vyřešené stránkování, retry i serializaci.
+   `Invoke-MgGraphRequest` je pro mezery, ne výchozí volba.
+2. **Filtrovat na serveru** (`-Filter`, `$filter`, CAML `<Where>`), ne `Where-Object`
+   po stažení všeho.
+3. **Brát jen potřebné sloupce** (`-Property`, `$select`) — méně dat, rychlejší odpověď.
+4. **Stránkovat vestavěnými prostředky** (`-All`, `-PageSize`, `nextLink`), nikdy
+   nespoléhat na to, že se „vejde první stránka".
+5. **Zápisy dávkově** (`New-PnPBatch` / `Invoke-PnPBatch`, `$batch`) — méně volání
+   znamená méně throttlingu.
+6. **Chyby klasifikovat** (`Retry-After` u 429/5xx, fail-fast u ostatních 4xx) a psát
+   `try/catch` s čitelnou hláškou.
+7. **Access token je pro klienta neprůhledný** — dekódovat ho pro diagnostiku ano
+   (D2), stavět na jeho claimech produkční logiku ne.
+
+> [!NOTE]
+> Ruční průchod `@odata.nextLink` v Labu 4 je **učební cvičení** — abyste viděli, co
+> `-All` dělá pod pokličkou. V produkčním skriptu použijte `-All` nebo cmdlet SDK.
+
+## 1. Uživatelé — cmdlet SDK, `-Property`, `-Filter`
 
 ```powershell
-# Graph
-Invoke-MgGraphRequest GET "https://graph.microsoft.com/v1.0/users?`$select=displayName,mail,jobTitle&`$top=5"
+# Graph SDK — doporučená cesta: cmdlet řeší stránkování i serializaci za vás
+Get-MgUser -Top 5 -Property DisplayName, Mail, JobTitle |
+  Select-Object DisplayName, Mail, JobTitle
+
+# Celý adresář správně = -All (stránkuje samo), s filtrem na serveru
+Get-MgUser -All -Filter "accountEnabled eq true" -Property DisplayName, Mail
 
 # PnP (SPO pohled na uživatele webu)
-Get-PnPUser | Select-Object Title, Email, LoginName -First 5
+Get-PnPUser | Select-Object -First 5 Title, Email, LoginName
 ```
 
-**Všimněte si:** v PowerShellu se `$` v URL musí escapovat (`` `$select ``) — jinak ho
-PowerShell považuje za proměnnou a pošle prázdno. Klasická past prvního dne s Graphem.
+**Všimněte si:** `-Property` je totéž co `$select` a `-All` totéž co smyčka přes
+`nextLink` — jen otestované. Když si přece jen skládáte URL sami
+(`Invoke-MgGraphRequest`), musíte v PowerShellu escapovat `$`: `` "…?`$select=…" `` —
+jinak ho PowerShell považuje za proměnnou a pošle prázdno.
 
 ## 2. Weby a jejich obsah
 

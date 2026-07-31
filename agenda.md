@@ -44,7 +44,7 @@ cíl dnů 1–3 je sebejistá, bezpečná práce s API a skripty, ne migrační 
 | # | Blok | Slug | Typ | Čas |
 |---|---|---|---|---|
 | 1 | Microsoft Graph prakticky *(Lab 4 + živá dema přístupu k datům)* | `day-3/graph-fundamentals` | P | 45 + 60 |
-| 2 | Site templates & list templates *(lab: šablona z hotového webu)* | `day-3/site-list-templates` | P | 40 + 30 |
+| 2 | Site templates & list templates *(lab: web → seznam → položky → dokumenty)* | `day-3/site-list-templates` | P | 40 + 45 |
 | 3 | Správa SPFx: App Catalog, API access, tenant-wide extensions *(demo)* | `day-3/spfx-admin` | P | 40 + 15 |
 | 4 | Azure orientace: subscription, RBAC, kde skript běží (+ kontejnery) | `day-3/azure-orientation` | P | 30 + 15 |
 | 5 | Node.js & TypeScript — druhá cesta k API *(demo)* | `day-3/opt-node-typescript` | V | 20 |
@@ -52,7 +52,7 @@ cíl dnů 1–3 je sebejistá, bezpečná práce s API a skripty, ne migrační 
 | 7 | Mini-capstone: vlastní skript s Copilot Chat *(Lab 5)* | `day-3/capstone-mini` | P | 10 + 60 + 20 |
 
 > [!NOTE]
-> **Povinné bloky = ~5 h 45 min čistého času** — den je plný a volitelné bloky se
+> **Povinné bloky = ~6 h čistého času** — den je plný a volitelné bloky se
 > spouští jen při reálné rezervě (uvolňovací ventil v tomto pořadí: `opt-node-typescript`,
 > `opt-orchestry-intro`, pak zkrácení `azure-orientation` na 20 min). Osa dne:
 > **čtu data** (Graph + zásobník živých demo dotazů) → **vyrábím prostředí ze šablon**
