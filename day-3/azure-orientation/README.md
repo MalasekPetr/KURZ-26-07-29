@@ -35,7 +35,9 @@ vlastní resource group, ne na subscription (viz [`../../environment.md`](../../
 | Vlastní stanice, ručně | ad-hoc, vývoj | interactive/device code (delegated) |
 | Scheduled task na serveru | pravidelný běh on-prem | certifikát v **LocalMachine** store (D2) |
 | Azure Functions / Automation | pravidelný běh bez vlastního železa | **managed identity** — žádný spravovaný secret |
-| Kontejner (CI/CD, cloud) | přenositelnost, izolace | cert/federated credentials, soubory PEM (D2) |
+| **Container Instances (ACI)** | jednorázový/dávkový běh, „spusť a zapomeň" | managed identity, nebo PEM/federated credentials |
+| **Container Apps Job** | plánovaný běh v kontejneru, scale-to-zero | managed identity |
+| CI/CD pipeline (kontejner) | build, test, nasazení skriptů | federated credentials / cert v Key Vaultu |
 
 Pointa: čím výš na žebříku, tím **méně** tajemství leží na discích —
 managed identity nemá co ukrást. Azure tu není povinnost, ale odměna.
@@ -46,6 +48,20 @@ spustí stejně. Image `mcr.microsoft.com/powershell` obsahuje hotový PowerShel
 Linuxu — tentýž skript z labů běží v něm beze změny. **Devcontainer** (`devcontainer.json`
 v repu) dá celému týmu identické vývojové prostředí ve VS Code — konec „u mě to funguje".
 Kde se to potká s M365: CI/CD pipeline (YAML z D1!) spouští skripty právě v kontejnerech.
+
+**Kontejnery si nemusíte provozovat, aby vám běžely** — v Azure jsou to hotové služby
+a nepotřebujete na svém stroji vůbec nic:
+
+| Služba | K čemu | Poznámka |
+|---|---|---|
+| **Cloud Shell** | konzole v prohlížeči | sama je kontejner s PS7; efemérní, přežije jen `$HOME` |
+| **Container Instances (ACI)** | „spusť tenhle image, vypiš log, zmiz" | jeden příkaz, platí se po sekundách |
+| **Container Apps Job** | plánovaný běh (cron), scale-to-zero | dospělá varianta ACI pro opakované úlohy |
+| **Container Registry (ACR)** | kde bydlí *váš* image | až když si obraz stavíte sami |
+
+Lokální Docker/Podman potřebujete teprve tehdy, když chcete image **stavět** — pro
+spouštění stačí Azure. (Pro tuto skupinu je to podstatná zpráva: žádná instalace,
+žádná licence Docker Desktopu, žádný restart stroje.)
 
 ## Demo (živě)
 1. Portál: subscription → kurzová resource group → přiřazené role (IAM) — ukázat, že
@@ -62,12 +78,32 @@ Kde se to potká s M365: CI/CD pipeline (YAML z D1!) spouští skripty právě v
 
    Pointa: session je **efemérní** — zavřením zmizí, přežije jen `$HOME` (file share).
    Kontejner = zabalené běhové prostředí, ne váš počítač.
-3. **Devcontainer** — [`.devcontainer/devcontainer.json`](../../.devcontainer/devcontainer.json)
-   tohoto repa: otevřít repo v **GitHub Codespaces** (*Code → Codespaces → Create*) a
-   ukázat, že celý tým dostane identické prostředí (PowerShell 7 + PnP + extensions)
-   definované jedním JSON souborem v gitu — „u mě to funguje" končí. Lokálně totéž dělá
-   *Dev Containers: Reopen in Container* ve VS Code (vyžaduje Docker/Podman).
-4. Azure Function s managed identity (předpřipravená): tělo skriptu bez jediného
+3. **Vlastní kontejner v Azure — Container Instances** (jádro dema): spustit PowerShell
+   skript v kontejneru na jeden příkaz, přečíst log, uklidit. Bez lokálního Dockeru.
+
+   ```powershell
+   $rg = "rg-kuzk-demo"
+   az group create -n $rg -l westeurope                     # jednou (vyhrazená RG, ne produkční!)
+
+   az container create -g $rg -n kurz-pwsh `
+     --image mcr.microsoft.com/powershell:latest `
+     --os-type Linux --cpu 1 --memory 1 --restart-policy Never `
+     --command-line 'pwsh -NoProfile -Command "$PSVersionTable.PSVersion.ToString(); Get-Content /etc/os-release -TotalCount 2"'
+
+   az container logs -g $rg -n kurz-pwsh                    # výstup skriptu z kontejneru
+   az container show  -g $rg -n kurz-pwsh --query "instanceView.state" -o tsv
+   az container delete -g $rg -n kurz-pwsh --yes             # úklid — platí se po sekundách
+   ```
+
+   Pointa: **stejný skript, žádná instalace, žádný server** — jen deklarace „tento image,
+   tento příkaz". `--restart-policy Never` = dávková úloha, ne služba.
+   Nástavba k probranému žebříčku: `--assign-identity <resourceId uživatelské MI>` dá
+   kontejneru **managed identitu** — a pak v něm neběží žádný secret ani certifikát.
+4. **Devcontainer** (krátce, jen když je čas) —
+   [`.devcontainer/devcontainer.json`](../../.devcontainer/devcontainer.json) tohoto repa
+   otevřený v **GitHub Codespaces**: celý tým dostane identické prostředí (PowerShell 7 +
+   PnP + extensions) definované jedním JSON souborem v gitu.
+5. Azure Function s managed identity (předpřipravená): tělo skriptu bez jediného
    credentialu — kam se firma může dostat, až workflow zapustí kořeny.
 
 ## Klíčové rozlišení
@@ -85,21 +121,29 @@ Kde se to potká s M365: CI/CD pipeline (YAML z D1!) spouští skripty právě v
 - [What is Azure role-based access control (RBAC)?](https://learn.microsoft.com/en-us/azure/role-based-access-control/overview)
 - [Managed identities for Azure resources](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview)
 - [Developing inside a Container (VS Code)](https://code.visualstudio.com/docs/devcontainers/containers)
+- [Azure Container Instances — quickstart (Azure CLI)](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-quickstart)
+- [Container Apps Jobs — spouštění dávkových úloh](https://learn.microsoft.com/en-us/azure/container-apps/jobs)
+- [Managed identity v Azure Container Instances](https://learn.microsoft.com/en-us/azure/container-instances/container-instances-managed-identity)
 
 ## Tipy
-- **Kontejner si osaháte bez instalace**: Cloud Shell (`shell.azure.com`) i Codespaces
-  běží v prohlížeči. Lokální runtime (Docker Desktop / Podman) potřebujete až tehdy,
-  když chcete kontejnery provozovat, ne poznat.
+- **Kontejnery zkoušejte v Azure, ne na svém stroji**: Cloud Shell a ACI zvládnete
+  z prohlížeče a Az CLI. Lokální runtime řešte teprve, až budete image **stavět**.
+- **ACI vždy uklidit** (`az container delete`) — účtuje se po sekundách, ale zapomenutý
+  kontejner s `--restart-policy Always` běží věčně. Vyhrazená resource group na dema
+  je pravidlo, ne kosmetika: co vznikne spolu, ať zmizí spolu.
+- Dema **nikdy do produkční resource group** — i „jen na chvíli". Vlastní `rg-*-demo`
+  a po akci `az group delete`.
 - Na Windows vyžadují Docker Desktop i Podman **WSL2** — instalace znamená restart
   stroje; nepouštějte se do ní pět minut před tím, než to potřebujete.
 - **Licenční pozor u Docker Desktop**: pro větší organizace je placený. Podman je
   bez tohoto omezení a příkazy jsou stejné (`podman run …` místo `docker run …`).
-- Kdo chce kontejnery vyzkoušet doma: `wsl --install` (restart) →
+- Kdo chce kontejnery lokálně: `wsl --install` (restart) →
   `winget install RedHat.Podman` → `podman machine init && podman machine start` →
   `podman run -it mcr.microsoft.com/powershell`.
 
 ## Stav produktu / delta
 > [!WARNING]
-> Ověřit k datu běhu — vzhled a chování Azure Cloud Shell, dostupnost Codespaces
-> (free tier hodin) a licenční podmínky Docker Desktopu se mění. Demo 2 a 3 projít
-> den předem; obojí vyžaduje jen prohlížeč a přihlášení.
+> Ověřit k datu běhu — vzhled a chování Azure Cloud Shell, syntaxe `az container`
+> (a podpora managed identity v ACI), dostupnost Codespaces free tier a licenční
+> podmínky Docker Desktopu se mění. Dema 2 a 3 projít den předem — ACI kontejner
+> nastartuje 20–60 s, s tím ve výkladu počítat (a mít připravený log z generálky).
