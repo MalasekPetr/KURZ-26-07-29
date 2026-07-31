@@ -89,6 +89,27 @@ GET /sites/{site-id}/lists/{list-id}/columns
 /_api/web/lists/getbytitle('Dokumenty')/fields?$filter=TypeAsString eq 'Choice'
 ```
 
+## Indexy a velikost seznamu
+
+Před každým dotazem nad neznámým seznamem dvě otázky: kolik toho tam je a podle čeho
+můžu filtrovat bez pádu na threshold 5000.
+
+```powershell
+# Kolik položek a kdy naposledy změna
+Get-PnPList -Identity "Dokumenty" | Select-Object Title, ItemCount, LastItemUserModifiedDate
+
+# Které sloupce jsou indexované (= podle čeho můžu bezpečně filtrovat)
+Get-PnPField -List "Dokumenty" |
+  Where-Object Indexed -eq $true |
+  Select-Object Title, InternalName, TypeAsString
+
+# Přidat index (limit ~20 na seznam; zavést dokud je seznam malý)
+Set-PnPField -List "Dokumenty" -Identity "Stav" -Values @{ Indexed = $true }
+```
+
+Souvislosti, limity a checklist pro práci s velkými seznamy:
+[`explainer-large-lists.md`](explainer-large-lists.md).
+
 ## Rychlé kombinace do praxe
 
 ```powershell

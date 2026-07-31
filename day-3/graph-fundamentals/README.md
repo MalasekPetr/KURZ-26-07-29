@@ -64,6 +64,26 @@ flowchart TD
   B -->|jiné 4xx| F[Neretryovat, logovat jako chybu]
 ```
 
+### Velké seznamy — threshold 5000 a indexy
+Dvě věci, které se pletou a obě potkáte, jakmile opustíte testovací data:
+
+- **List view threshold = 5000** není strop velikosti seznamu (ten je v milionech), ale
+  limit na to, kolik položek smí **projít jeden dotaz**. Chrání sdílenou databázi.
+- **Indexovaný sloupec** je nástroj, jak dotaz zúžit pod threshold — filtr na indexovaném
+  sloupci projde i nad velkým seznamem, filtr na neindexovaném spadne.
+
+Pravidlo do praxe: **filtruj na serveru, ber po stránkách, na velký seznam nikdy nesahej
+„celý"** (`Get-PnPListItem | Where-Object …` je anti-pattern). Detail, konkrétní příkazy
+na zjištění a přidání indexu, CAML s `RowLimit` a checklist před spuštěním skriptu nad
+velkým seznamem: [`explainer-large-lists.md`](explainer-large-lists.md).
+
+### Throttling ve velkém
+`Retry-After` z výkladu výše je základ; u objemných operací k tomu patří: **paralelizací
+se throttlingu nezbavíte** (přivoláte ho), dávková API místo N volání
+(`Invoke-PnPBatch`, `$batch`), a u vlastních REST volání **dekorovaný user agent**
+(`NONISV|Firma|Aplikace/1.0` — nedekorovaný provoz je throttlován agresivněji; PnP si
+ho nastavuje sám). Rozvedeno tamtéž v [`explainer-large-lists.md`](explainer-large-lists.md).
+
 ### Výhled — až skripty porostou
 - **JSON batching** (`POST /$batch`): až 20 requestů v jednom volání; pozor, batch-level
   200 neznamená úspěch všech dílčích odpovědí.

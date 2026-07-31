@@ -163,7 +163,11 @@ Detail a rozhodovací osa: [`backlog/migration-patterns/explainer-migration-tool
 
 > [!WARNING] Ověřit k datu běhu — stav k 2026-07.
 
-- **List view threshold**: 5000 položek na dotaz bez indexovaného sloupce — throttling, ne tvrdý strop na velikost listu.
+- **List view threshold**: 5000 = limit na to, kolik položek smí projít **jeden dotaz** — ne strop velikosti listu (ten je v milionech) a ne throttling. V SPO se nedá zvýšit.
+- **Indexovaný sloupec**: pomocná struktura, která dotaz zúží pod threshold; filtr/řazení na indexovaném sloupci projde i nad velkým listem. Limit ~20 indexů na list, nelze indexovat vícehodnotové a počítané sloupce ani víceřádkový text; zavádět dokud je list malý. `Set-PnPField -List X -Identity Y -Values @{Indexed=$true}`.
+- **Throttling vs threshold**: threshold = *jeden dotaz je moc velký* (chyba okamžitě), throttling = *voláš moc často* (429/503 + `Retry-After`). Dvě různé věci, dvě různá řešení: index a stránkování vs. backoff a dávky.
+- **Dekorace user agenta**: vlastní REST/CSOM volání do SPO označit `NONISV|Firma|Aplikace/1.0` — nedekorovaný provoz je throttlován agresivněji (PnP.PowerShell si UA nastavuje sám).
+- Detail a checklist: [`day-3/graph-fundamentals/explainer-large-lists.md`](day-3/graph-fundamentals/explainer-large-lists.md).
 - **Verze souborů**: výchozí retence verzí (major/minor) násobí objem migrovaných dat — řešit před migrací, ne po ní.
 - **Search crawl delay**: po migraci obsah není okamžitě vyhledatelný — plánovat cutover s rezervou na re-index.
 - **Wave planning**: rozdělení migrace do vln dle rizika/velikosti/závislostí, ne dle abecedy — kritické weby v pozdější vlně s delším bufferem na rollback.
