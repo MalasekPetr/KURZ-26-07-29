@@ -87,7 +87,7 @@ Tentýž požadavek narazí u každé cesty na jinou hranu — přesně proto je
 
 - **Agent Builder** (lehká tvorba pro koncového uživatele přímo v Copilot appce) — knowledge = list `Zaměstnanci` (1 list) + obě knihovny (soubory ≤ 100). Zvládne **lookup a hledání v souborech**. Strop: **žádná analytika** („komu propadá certifikát" jen prioritizuje, nespočítá).
 - **SharePoint agent** — tvrdé omezení **1 zdroj a nic jiného** (přidání dalšího shodí ostatní; MC1255409). HR scénář (list + 2 knihovny) se do **jednoho** SharePoint agenta nevejde → buď scopovat na jeden zdroj (např. jen knihovna `Smlouvy`), nebo víc agentů. Omezení učí samo sebe.
-- **Microsoft 365 Agents Toolkit** (pro-code, VS Code / Visual Studio) — SharePoint knowledge v manifestu = **weby / knihovny / složky / soubory** (`list_id` = **knihovna**, `unique_id` = soubor/složka — ověřeno ve schématu 1.7). **Strukturovaný list jako tabulku manifest nezná vůbec** — tabulková data jen přes `Dataverse` / Copilot konektor / akci. Pro HR list je tedy Toolkit špatný nástroj; jeho vlastní scénář, kde vyhrává (akce + agent jako kód), je [`scenario-support-agent.md`](scenario-support-agent.md).
+- **Microsoft 365 Agents Toolkit** (pro-code, VS Code / Visual Studio) — SharePoint knowledge v manifestu = **weby / knihovny / složky / soubory** (`list_id` = **knihovna dokumentů**, `unique_id` = soubor/složka — ověřeno ve schématu 1.8). **Strukturovaný list jako tabulku manifest nezná vůbec** — tabulková data jen přes `Dataverse` / Copilot konektor / akci. Pro HR list je tedy Toolkit špatný nástroj; jeho vlastní scénář, kde vyhrává (akce + agent jako kód), je [`scenario-support-agent.md`](scenario-support-agent.md).
 - **(dozraje v D5) Copilot Studio** — jediná cesta na **analytické dotazy** nad listem (až 10 listů). Zde scénář vrcholí: „komu propadá certifikát do 30 dnů" a „kdo nepodepsal" jsou přesně dotazy pro Studio.
 
 ## Ukázková data (edge cases)
@@ -115,4 +115,4 @@ Idempotentní; opětovné naplnění dat přes `-Reseed`. Detail viz hlavička s
 ## Stav produktu / delta
 
 > [!WARNING] Ověřit k datu běhu — stav k 2026-07.
-> Podpora listů se hýbe nejrychleji (SharePoint agents GA ~05/2026, MC1255409; docs lag). Copilot Studio listy = production-ready preview s analytikou. Manifest schema 1.8 (listy pro Toolkit) k 2026-07 neexistuje — Toolkit tedy list `Zaměstnanci` stále nescopuje. Před během ověřit dostupnost Agent Builderu a Copilot Studia v PAYG tenantu.
+> Podpora listů se hýbe nejrychleji (SharePoint agents GA ~05/2026, MC1255409; docs lag). Copilot Studio listy = production-ready preview s analytikou. Manifest schema 1.8 už vyšlo, ale **listy nepřineslo** (novinky = `EmailActions`, `MeetingActions`) — Toolkit tedy list `Zaměstnanci` stále nescopuje. Před během ověřit dostupnost Agent Builderu a Copilot Studia v PAYG tenantu.

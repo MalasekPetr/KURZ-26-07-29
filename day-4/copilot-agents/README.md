@@ -35,7 +35,7 @@ flowchart TB
 | **[SharePoint agents](../../day-5/sharepoint-agents/README.md)** | vlastník obsahu | **tvorba: Copilot licence**; použití: licence NEBO PAYG | jen web (sdílení do Teams chatu) |
 | **[Agents Toolkit](../../day-5/agents-toolkit/README.md)** | vývojář (u nás: správce, jako konfigurace) | zdarma (VS Code); repo-as-code | org katalog, marketplace |
 | **Copilot Studio** (D5) | maker / power user | Copilot Studio přístup (kredity/PAYG) | org katalog přes schválení, marketplace |
-| **Skills** (mimo tento běh, preview) | uživatel webu | Copilot in SharePoint (MS: Copilot licence; **empiricky i PAYG** — ověřeno 2026-07-17) + Edit | v rámci webu |
+| **Skills** (D5, preview) | uživatel webu | Copilot in SharePoint (MS: Copilot licence; **empiricky i PAYG** — ověřeno 2026-07-17) + **Edit** na webu | v rámci webu |
 
 Detailní **srovnání schopností** (knowledge vč. listů, akce, orchestrace, ALM, governance) + rozhodovací osa: [`comparison-agent-paths.md`](comparison-agent-paths.md).
 
@@ -56,7 +56,7 @@ Org flow: maker publikuje → **Requests** v admin centru → admin Publish/Reje
 3. **[SharePoint agents](../../day-5/sharepoint-agents/README.md)** (D5) — instruktor ukáže (limit 1 zdroj; tvorba license-only).
 4. **[Agents Toolkit](../../day-5/agents-toolkit/README.md)** (D5) — studenti společně (agent jako spravovaná konfigurace).
 
-**Copilot Studio je až D5; Skills jsou mimo tento běh (plný kurz GOC224).**
+**Copilot Studio je až D5; Skills se na tomto běhu odpřednášely v D5** ([`../../day-5/sharepoint-skills/`](../../day-5/sharepoint-skills/)).
 
 ## Lab a sdílené materiály
 

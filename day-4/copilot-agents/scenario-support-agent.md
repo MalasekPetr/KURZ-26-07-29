@@ -62,4 +62,4 @@ Knihovna `Runbooky` (4 .md runbooky) vzniká spolu s HR daty přes `scripts/New-
 ## Stav produktu / delta
 
 > [!WARNING] Ověřit k datu běhu — stav k 2026-07.
-> UI Agents Toolkitu (aktuálně 6.0) a názvy šablon se mění — ověřit „Declarative Agent" bez akce. `editorial_answers`/`discourage_model_knowledge` = manifest schema 1.7. Provisioning/běh deklarativního agenta vyžaduje Copilot licenci (instruktor).
+> UI Agents Toolkitu (aktuálně 6.0) a názvy šablon se mění — ověřit „Declarative Agent" bez akce. `editorial_answers`/`discourage_model_knowledge` = manifest schema 1.8 (dřív 1.7, funkce beze změny). Provisioning/běh deklarativního agenta: MS v manifestu 1.8 dokumentuje **metered usage (PAYG) NEBO Copilot licenci** — na PAYG tenantu tedy funguje i studentům.

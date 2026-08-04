@@ -210,10 +210,11 @@ Značka „SharePoint Premium" byla rozdělena. **Není** 1:1 přejmenovaná na 
 |---|---|---|---|
 | **Document processing for Microsoft 365** | Syntex → SharePoint Premium (content-AI část) | vytěžování dokumentů, PAYG | prioritní služby: Autofill columns, Document translation, OCR, eSignature |
 | **eSignature** | SharePoint eSignature | podepisování dokumentů | služba pod Document processing; v UI stále „SharePoint eSignature" |
-| **SharePoint Advanced Management (SAM)** | (dříve pod deštníkem „Premium") | governance webů/OneDrive | dvě licenční cesty: Plan 1 add-on ($3/user/měs), NEBO ≥1 M365 Copilot licence v tenantu (výjimka: restricted site creation by apps = jen Plan 1) |
+| **SharePoint Advanced Management (SAM)** | (dříve pod deštníkem „Premium") | governance webů/OneDrive: DAG reporty, RCD, RAC, site attestation, access reviews, catalog management | dvě licenční cesty: Plan 1 add-on, NEBO ≥1 M365 Copilot licence v tenantu (výjimka: restricted site creation by apps = jen Plan 1; report *Sensitivity labels* = E5/G5). Modul: [`day-5/sam-copilot-readiness/`](day-5/sam-copilot-readiness/) |
 | **Microsoft 365 Backup** | „SharePoint backup" | záloha SharePoint + OneDrive + Exchange | samostatný produkt |
 | **Microsoft 365 Archive** | „SharePoint archive" | studená data / cold storage | samostatný produkt |
-| **Copilot in SharePoint** | Knowledge Agent → AI in SharePoint | Copilot zážitek nad weby (vč. Skills) | opt-out preview, default-on pro Copilot licence |
+| **Copilot in SharePoint** | Knowledge Agent → AI in SharePoint | Copilot zážitek nad weby (vč. **Skills**) | opt-out preview od 06/2026, default-on pro Copilot licence; řízení `Set-SPOTenant -KnowledgeAgentScope` (default `NoSites`), RCD má přednost; denní/týdenní limity v preview |
+| **Skill** (Copilot in SharePoint) | — | opakovatelný postup jako asset webu | `SKILL.md` v knihovně **Agent Assets** (`/Agent Assets/Skills/<nazev>/`); tvoří Edit, používá View, výpis `/Skills`; neumí externí systémy ani vlastní kód a nerozšiřuje oprávnění. Modul: [`day-5/sharepoint-skills/`](day-5/sharepoint-skills/) |
 | **Agent 365** | (nový, GA 1. 5. 2026) | governance/security control plane pro AI agenty | per-user, $15/měs nebo v E7; agenti se nelicencují, licencuje se uživatel |
 
 > [!IMPORTANT] Backend vs. brand
@@ -225,7 +226,7 @@ Značka „SharePoint Premium" byla rozdělena. **Není** 1:1 přejmenovaná na 
 | Model | Co platí | Metrika | Kde |
 |---|---|---|---|
 | **Document processing PAYG** | vytěžování dokumentů, OCR, překlad, eSignature | Azure metry (za stránku/dokument) | M365 admin center → billing |
-| **Copilot Credits PAYG** | Copilot Chat (nad tenant daty) + použití SharePoint agents + **Skills / Copilot in SharePoint** a **tvorba/nasazení agentů přes Agents Toolkit** (empiricky fungují i na PAYG bez Copilot licence — MS nedokumentuje, ověřeno na kurzu 2026-07-17) | Copilot Credits ($0,01/kredit) | M365 admin center → PAYG billing policy + Azure |
+| **Copilot Credits PAYG** | Copilot Chat (nad tenant daty) + použití SharePoint agents + **deklarativní agenti z Agents Toolkitu** (manifest 1.8 to dokumentuje: *metered usage* **nebo** Copilot licence) + **Skills / Copilot in SharePoint** (empiricky funguje i na PAYG, MS uvádí licenci — ověřeno na kurzu 2026-07-17) | Copilot Credits ($0,01/kredit) | M365 admin center → PAYG billing policy + Azure |
 
 Backup i Archive vyžadují nastavený (ex-Syntex) PAYG billing — stejná plumbing jako
 Document processing, ale samostatné produkty a pricing.

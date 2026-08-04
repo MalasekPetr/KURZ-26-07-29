@@ -79,16 +79,25 @@ cíl dnů 1–3 je sebejistá, bezpečná práce s API a skripty, ne migrační 
 
 ## Den 5 — AI: stavba, správa & rollout
 
+Pořadí odpovídá **skutečnému běhu** (viz [`README.md`](README.md) → Jak běh proběhl).
+
 | # | Blok | Slug | Typ |
 |---|---|---|---|
-| 1 | SharePoint agents *(instruktor demo — limit 1 zdroj)* | `day-5/sharepoint-agents` | P |
-| 2 | Microsoft 365 Agents Toolkit *(agent jako spravovaná konfigurace)* | `day-5/agents-toolkit` | P |
-| 3 | Copilot Studio — stavba nad SharePointem | `day-5/copilot-studio` | P |
-| 4 | Nástroje pro správu Copilotu a agentů (M365 AC: Copilot & Agents, Agent 365) | `day-5/copilot-admin` | P |
-| 5 | Provozní monitoring a compliance | `day-5/opt-monitoring` | V |
-| 6 | Capstone & next steps *(rollout blueprint — automatizace + AI dohromady)* | `day-5/capstone` | P |
+| 1 | SAM — připravenost na Copilot *(náhled v admin centru)* | `day-5/sam-copilot-readiness` | P |
+| 2 | SharePoint agents *(instruktor demo — limit 1 zdroj)* | `day-5/sharepoint-agents` | P |
+| 3 | SharePoint Skills — workflow jako asset *(hands-on)* | `day-5/sharepoint-skills` | P |
+| 4 | Microsoft 365 Agents Toolkit *(agent jako spravovaná konfigurace)* | `day-5/agents-toolkit` | P |
+| 5 | Copilot Studio — stavba nad SharePointem | `day-5/copilot-studio` | P |
+| 6 | Nástroje pro správu Copilotu a agentů (M365 AC: Copilot & Agents, Agent 365) | `day-5/copilot-admin` | P |
+| 7 | Provozní monitoring a compliance | `day-5/opt-monitoring` | V |
+| 8 | Capstone & next steps *(rollout blueprint)* — **na tomto běhu neodpřednášeno** | `day-5/capstone` | V |
 
-> [!NOTE] Oblouk „postavili jste (D4–D5 dopoledne) — teď to řídíte (copilot-admin) —
-> a plánujete rollout (capstone)". Capstone je elastický 60–120 min blok a propojuje
-> obě části kurzu: blueprint pokrývá automatizační artefakty z D1–3 i agenty z D4–5.
-> Agents Toolkit navíc přirozeně navazuje na repo-as-code návyky z automatizačních dnů.
+> [!NOTE]
+> Oblouk dne: **zjistím stav** (SAM: co je přesdílené, než pustím Copilota) →
+> **postavím** (agents → skills → Toolkit → Copilot Studio) → **řídím**
+> (copilot-admin). SAM náhled na začátku funguje jako rámec pro celý den: agenti čtou
+> s oprávněními uživatele, takže governance je vstupní podmínka, ne dodatek.
+> Skills navazují hned za SharePoint agents (postup vs znalost) a jsou nejlevnější
+> cesta, jak dostat firemní pravidlo do Copilotu.
+> Capstone se na tomto běhu nestihl — materiál zůstává jako **podklad k samostudiu
+> a pro follow-up** ([`day-5/capstone/`](day-5/capstone/)).

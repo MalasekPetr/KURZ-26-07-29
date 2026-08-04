@@ -52,4 +52,4 @@ Postavit společně deklarativního agenta v Microsoft 365 Agents Toolkitu **jak
 
 ## Zdroje (Microsoft)
 
-[Add knowledge sources (Agents Toolkit)](https://learn.microsoft.com/en-us/microsoft-365-copilot/extensibility/build-declarative-agents-add-knowledge) · [Declarative agent manifest 1.7](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/declarative-agent-manifest-1.7)
+[Add knowledge sources (Agents Toolkit)](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/build-declarative-agents-add-knowledge) · [Declarative agent manifest 1.8](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/declarative-agent-manifest-1.8)

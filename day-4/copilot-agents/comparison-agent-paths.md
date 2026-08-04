@@ -10,7 +10,7 @@
 | Schopnost | **Agent Builder** | **Copilot Studio** (new exp.) | **Agents Toolkit** (VS Code) | **SharePoint agents** |
 | --- | --- | --- | --- | --- |
 | **SharePoint soubory/weby** | ✅ až 100 souborů/složek/webů | ✅ weby real-time nebo upload se sync | ✅ URL / SharePoint IDs (site, knihovna, složka, soubor) | ✅ zdroje z webu |
-| **SharePoint listy** | ✅ **1 list** (20k položek / 50 MB; přílohy se neindexují) | ✅ **až 10 listů**, ~120k řádků celkem; **analytické/agregační dotazy** | ❌ list jako tabulku manifest nezná (`list_id` = **knihovna**, ne list — schema 1.7); tabulková data jen přes `Dataverse`/konektor/akci | ✅ **1 list — a nic jiného** (přidání listu odstraní ostatní zdroje; MC1255409) |
+| **SharePoint listy** | ✅ **1 list** (20k položek / 50 MB; přílohy se neindexují) | ✅ **až 10 listů**, ~120k řádků celkem; **analytické/agregační dotazy** | ❌ list jako tabulku manifest nezná (`list_id` = **knihovna dokumentů**, ne list — platí i v schema 1.8); tabulková data jen přes `Dataverse`/konektor/akci | ✅ **1 list — a nic jiného** (přidání listu odstraní ostatní zdroje; MC1255409) |
 | **Dataverse** | ❌ | ✅ nativní | ✅ capability `Dataverse` (tabulky v manifestu) | ❌ |
 | **Copilot konektory** | ✅ vč. scopování atributem | ✅ | ✅ + **KQL filtr** (`additional_search_terms`), scoping per item/container | ❌ |
 | **Teams / e-mail / People / schůzky** | ✅ (Teams 5 chatů, e-mail bez scopování) | částečně (přes konektory/tools) | ✅ nejjemnější: e-mail per složka + **shared/group mailboxy**, schůzky per ID, People s related content | ❌ |
@@ -34,7 +34,7 @@ Průřezově pro všechny: **permission trimming** (agent nikdy nepřekročí pr
 
 ## Rozhodovací osa (rozšíření tabulky z README)
 
-1. **Potřebuješ data z listů?** analytika → Copilot Studio (10 listů) · lookup → Agent Builder (1 list + jiné zdroje) · „agent nad jedním listem a ničím jiným" → SharePoint agent · Toolkit → ne (čekat na schema 1.8+, sledovat [manifest changelog](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/declarative-agent-manifest-1.7)).
+1. **Potřebuješ data z listů?** analytika → Copilot Studio (10 listů) · lookup → Agent Builder (1 list + jiné zdroje) · „agent nad jedním listem a ničím jiným" → SharePoint agent · Toolkit → **ne** (schema 1.8 listy nepřineslo — přidalo `EmailActions`/`MeetingActions`; sledovat [manifest changelog](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/declarative-agent-manifest-1.8)).
 2. **Potřebuješ akce/automatizaci?** konektory/MCP/triggery → Copilot Studio · vlastní API s OpenAPI → Toolkit · žádné akce → Builder/SharePoint agent.
 3. **Potřebuješ source control a CI/CD?** → Toolkit, bez diskuze (repo-as-code přístup kurzu).
 4. **Kdo staví?** koncový uživatel → Builder · vlastník webu → SharePoint agent · maker → Studio · vývojář → Toolkit.
@@ -42,9 +42,11 @@ Průřezově pro všechny: **permission trimming** (agent nikdy nepřekročí pr
 
 ## Zdroje (Microsoft)
 
-[Agent Builder — knowledge](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/agent-builder-add-knowledge) · [Copilot Studio — SharePoint lists (preview)](https://learn.microsoft.com/en-us/microsoft-copilot-studio/agents-experience/knowledge-sharepoint-lists) · [Declarative agent manifest 1.7](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/declarative-agent-manifest-1.7) · [SharePoint agents](https://learn.microsoft.com/en-us/sharepoint/get-started-sharepoint-agents) · [MC1255409 — Lists as knowledge source](https://mc.merill.net/message/MC1255409) · [Generative orchestration](https://learn.microsoft.com/en-us/microsoft-copilot-studio/advanced-generative-actions) · [DLP for Copilot Studio](https://learn.microsoft.com/en-us/microsoft-copilot-studio/admin-data-loss-prevention)
+[Agent Builder — knowledge](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/agent-builder-add-knowledge) · [Copilot Studio — SharePoint lists (preview)](https://learn.microsoft.com/en-us/microsoft-copilot-studio/agents-experience/knowledge-sharepoint-lists) · [Declarative agent manifest 1.8](https://learn.microsoft.com/en-us/microsoft-365/copilot/extensibility/declarative-agent-manifest-1.8) · [SharePoint agents](https://learn.microsoft.com/en-us/sharepoint/get-started-sharepoint-agents) · [MC1255409 — Lists as knowledge source](https://mc.merill.net/message/MC1255409) · [Generative orchestration](https://learn.microsoft.com/en-us/microsoft-copilot-studio/advanced-generative-actions) · [DLP for Copilot Studio](https://learn.microsoft.com/en-us/microsoft-copilot-studio/admin-data-loss-prevention)
 
 ## Stav produktu / delta
 
 > [!WARNING] Ověřit k datu běhu — stav k 2026-07.
-> Nejrychleji se hýbe podpora listů: SharePoint agents ji dostaly GA ~05/2026 (MC1255409), ale admin dokumentace ji k 2026-06-25 ještě nereflektuje — ukázat studentům jako příklad docs lag. Copilot Studio listy = production-ready preview. Manifest **schema 1.8 k 2026-07 neexistuje** (ověřeno: Learn 404, JSON schema endpoint 404, docs repo bez PR) — listy pro Toolkit tedy zatím nikde neavizovány. `EmbeddedKnowledge` v manifestu 1.7 je popsané, ale označené „not yet available". `worker_agents` = preview.
+> Nejrychleji se hýbe podpora listů: SharePoint agents ji dostaly GA ~05/2026 (MC1255409), ale admin dokumentace ji k 2026-06-25 ještě nereflektovala — příklad docs lag. Copilot Studio listy = production-ready preview.
+>
+> **Aktualizace po běhu: manifest schema 1.8 vyšlo** — a listy nepřineslo. Novinky jsou `EmailActions` a `MeetingActions` (zápisové operace nad poštou a kalendářem); `list_id` je v 1.8 stále dokumentované jako *document library*. Tabulková data v Toolkitu tedy dál jen přes Dataverse/konektor/akci. `EmbeddedKnowledge` je popsané, ale dosud neaktivované; `worker_agents` = preview. Detail: [`../../day-5/agents-toolkit/README.md`](../../day-5/agents-toolkit/README.md).

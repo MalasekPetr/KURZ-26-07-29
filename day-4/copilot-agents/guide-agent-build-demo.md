@@ -59,7 +59,7 @@ Na tabuli napiš **5 dotazů** a po každé cestě doplň sloupec ✅/❌.
 > - **Tvrdý limit: 1 zdroj a nic jiného** (MC1255409). HR scénář (list + 2 knihovny) se do jednoho agenta nevejde.
 > - Agent žije s webem (permissions, lifecycle); distribuce jen web.
 
-**Kam patří Toolkit:** do scénáře A **ne** — SharePoint list nescopuje (ověřeno ve schématu 1.7: `list_id` = knihovna, ne list; tabulková data jen přes Dataverse/konektor/akci). Toolkit má vlastní scénář B níže, kde vyhrává.
+**Kam patří Toolkit:** do scénáře A **ne** — SharePoint list nescopuje (ověřeno ve schématu 1.8: `list_id` = knihovna dokumentů, ne list; tabulková data jen přes Dataverse/konektor/akci). Toolkit má vlastní scénář B níže, kde vyhrává.
 
 ---
 
@@ -117,4 +117,4 @@ Analytické dotazy 3 a 4 dnes **schválně necháváme viset** — zítra je Cop
 ## Stav produktu / delta
 
 > [!WARNING] Ověřit k datu běhu — stav k 2026-07.
-> Podpora listů se hýbe nejrychleji (SharePoint agents GA ~05/2026, docs lag; Copilot Studio listy = production-ready preview; manifest schema pro listy v Toolkitu k 2026-07 neexistuje — `list_id` je stále knihovna). Šablony Toolkitu (6.0) se přejmenovávají — ověřit „Declarative Agent" (stavíme bez akce). Před během ověřit dostupnost Agent Builderu v PAYG a přesné UI labely.
+> Podpora listů se hýbe nejrychleji (SharePoint agents GA ~05/2026, docs lag; Copilot Studio listy = production-ready preview; schema 1.8 vyšlo, ale listy nepřineslo — přidalo `EmailActions`/`MeetingActions`; `list_id` je stále knihovna dokumentů). Šablony Toolkitu (6.0) se přejmenovávají — ověřit „Declarative Agent" (stavíme bez akce). Před během ověřit dostupnost Agent Builderu v PAYG a přesné UI labely.

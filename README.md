@@ -14,6 +14,26 @@ a testování skriptů. Žádné vstupní znalosti se nepředpokládají.
 | **API & skriptování** | 1–3 | GOC223 (výběr) + nové moduly | mapa API SPO/M365 a vývoj nástrojů, formáty dat (JSON/YAML/XML/CSV, UTF-8) a PowerShell od nuly, app registrace a API permissions (delegated vs application), certifikáty (CER/PEM/PFX, stores, YubiKey), Graph prakticky a živá dema nad daty, site & list templates, správa SPFx (App Catalog, API access), Azure orientace, kontejnery, Node/TypeScript |
 | **AI & Copilot** | 4–5 | GOC224 | AI landscape, licencování, prompting, tvorba agentů (Agent Builder, SharePoint agents, Agents Toolkit, Copilot Studio), správa Copilotu, rollout |
 
+## Jak běh proběhl (předávací záznam)
+
+Kurz byl **odpřednášen v plném rozsahu 5 dnů** (od 2026-07-29). Repo je finální verze
+po běhu — obsahuje i úpravy, které vznikly z reakcí účastníků během kurzu. Odchylky od
+plánu:
+
+| Den | Odchylka | Stav materiálu |
+|---|---|---|
+| D1–D3 | Odpřednášeno dle plánu; průběžně doplněno podle dotazů (priming prompt v2, troubleshooting autentizace, tahák velkých seznamů, end-to-end lab web→seznam→dokumenty) | ✅ zapracováno |
+| D5 | **Přidán úvodní náhled do SAM** (SharePoint Advanced Management) jako rámec pro celý AI den | ✅ nový modul [`day-5/sam-copilot-readiness/`](day-5/sam-copilot-readiness/) |
+| D5 | **Přidány SharePoint Skills** hned za SharePoint agents (původně mimo rozsah běhu) | ✅ nový modul [`day-5/sharepoint-skills/`](day-5/sharepoint-skills/) |
+| D5 | **Capstone se nestihl** — nevešel se do času | ⚠️ materiál kompletní, označený jako podklad k samostudiu ([`day-5/capstone/`](day-5/capstone/)) |
+| D4–D5 | Microsoft mezitím vydal **manifest schema 1.8** — přineslo `EmailActions`/`MeetingActions`, **ne** podporu strukturovaných listů, na kterou materiály čekaly | ✅ odkazy i tvrzení přepsané na 1.8 |
+
+> [!NOTE]
+> Doporučené pokračování pro zákazníka: (1) vyplnit **capstone blueprint** nad reálným
+> zadáním s SAM reportem jako vstupem, (2) osobní „first automation" plány z D3 dotáhnout
+> do funkčních skriptů, (3) při zájmu navazující běh z modulů v [`backlog/`](backlog/)
+> (migrace, staging, provisioning, Azure integrace, Git do hloubky).
+
 ## Jak repo číst
 
 - **Pořadí modulů** je definované v [`agenda.md`](agenda.md) — složky jsou pojmenované
@@ -53,9 +73,9 @@ vypustil — zůstává v mateřských repech:
 | SPFx vývoj (základy, tvorba webpartů) | GOC223 D5 | vývojářské téma; **správa** SPFx ale pokrývá nový `day-3/spfx-admin` (revize 2026-07-30) |
 | Formáty, SharePoint úvod, IA | GOC224 D1 | ~~audience nepotřebuje úvod~~ **revize 2026-07-28: úvod do formátů obnoven jako nový modul `day-1/formats-fundamentals`** |
 | SharePoint PowerShell (SPO) | GOC224 D2 | kryje `day-2/powershell-deep-dive` |
-| Konfigurace, eSignature, SAM, Backup, Archive | GOC224 D2–4 | obsahové služby mimo AI fokus zadání |
+| Konfigurace, eSignature, Backup, Archive | GOC224 D2–4 | obsahové služby mimo AI fokus zadání (**SAM naopak odpřednášen** — `day-5/sam-copilot-readiness`) |
 | Power Automate — faktury, pro-code vs. low-code | GOC224 D3 | rozhodovací osu pokryje `copilot-agents` srovnání |
-| Skills (Copilot in SharePoint) | GOC224 D5 | preview, licenčně vratké; zmínka v mapě cest agentů |
+| Skills (Copilot in SharePoint) | GOC224 D5 | ~~preview, licenčně vratké~~ **odpřednášeno na běhu — nový modul `day-5/sharepoint-skills`** |
 | Document processing | GOC224 D2 | ponecháno jako **volitelný** blok D4 |
 | Monitoring & compliance | GOC224 D5 | ponecháno jako **volitelný** blok D5 |
 
@@ -84,7 +104,8 @@ Převzaté moduly jsou kopie z GOC223/GOC224 k 2026-07-18; moduly `day-1/api-lan
 `day-1/formats-fundamentals`, `day-2/certificates-and-keys`, `day-3/azure-orientation`,
 `day-3/opt-node-typescript` a `day-3/capstone-mini` vznikly pro tento běh (revize 2026-07-28);
 `day-3/site-list-templates`, `day-3/spfx-admin` a `day-3/opt-orchestry-intro` doplněny
-posílením D3 (revize 2026-07-30).
+posílením D3 (revize 2026-07-30); `day-5/sam-copilot-readiness` a `day-5/sharepoint-skills`
+vznikly podle skutečného průběhu D5 (revize po běhu).
 Odkazy uvnitř modulů na bloky, které v tomto výběru nejsou, vedou do `backlog/` nebo
 textově na plný kurz — nejsou to chybějící soubory, ale záměrně vypuštěný obsah.
 Opravy převzatého obsahu dělat v mateřských repech a sem přenášet; nové moduly se

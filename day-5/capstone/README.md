@@ -1,7 +1,15 @@
 # Capstone & next steps
 
-> Typ: povinný · Den: 5 (závěr) · Odhad: PM blok
+> Typ: volitelný — **na běhu 2026-07/08 neodpřednášeno** (nevešlo se do času; den vyplnily
+> SAM náhled a SharePoint Skills) · Den: 5 (závěr) · Odhad: PM blok
 > Prostředí: viz [`../../environment.md`](../../environment.md) · Názvosloví: [`../../GLOSSARY.md`](../../GLOSSARY.md)
+
+> [!NOTE]
+> Materiál zůstává kompletní jako **podklad k samostudiu a pro follow-up workshop**.
+> Blueprint lze sestavit i po kurzu — je to spíš strukturovaný design dokument než
+> cvičení závislé na učebně. Doporučené použití: vyplnit do měsíce po kurzu nad reálným
+> zadáním vlastní organizace, s SAM reportem ([`../sam-copilot-readiness/`](../sam-copilot-readiness/))
+> jako vstupem.
 
 ## Cíle
 
